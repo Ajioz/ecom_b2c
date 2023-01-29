@@ -6,7 +6,7 @@ import cors from "cors";
 import ConnectDb from './config/MongoDb.js'
 import seedData from './DataSeed.js';
 import productRoute from './Routes/ProductRoutes.js';
-import { errorHandler, notFound } from './Middleware/Errors.js';
+// import { errorHandler, notFound } from './Middleware/Errors.js';
 import userRoute from './Routes/UserRoutes.js';
 
 // //Extra security
@@ -28,8 +28,8 @@ app.use("/api", productRoute);
 app.use("/api/users", userRoute);
 
 // ERROR HANDLER
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 
 
 const start = async () => {

@@ -5,10 +5,10 @@ const notFound = (req, res, next) => {
 }
 
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (req, res, error) => {
     const statuscode = res.statusCode === 200 ? 404 : res.statusCode;
     res.status(statuscode).json({
-        message: err.message,
+        message: error.message,
         stack: process.env.NODE_ENV === "Production" ? null : `Not Found - ${req.originalUrl}`,
     });
 
