@@ -1,13 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
+import { saveShippingAddress } from "../Redux/Actions/cartAction";
 
-const ShippingScreen = () => {
+const ShippingScreen = ({history}) => {
   window.scrollTo(0, 0);
+
+  const cart = useSelector(state => state.cart)
+  const { shippingAddress } = cart;
+
+  const dispatch = useDispatch();
+
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [country, setCountry] = useState(shippingAddress.country);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(saveShippingAddress({address, city, postalCode, country}));
+    history.push("/payment")
   };
+  
   return (
     <>
       <Header />
@@ -17,15 +31,27 @@ const ShippingScreen = () => {
           onSubmit={submitHandler}
         >
           <h6>DELIVERY ADDRESS</h6>
-          <input type="text" placeholder="Enter address" />
-          <input type="text" placeholder="Enter city" />
-          <input type="text" placeholder="Enter postal code" />
-          <input type="text" placeholder="Enter country" />
-          <button type="submit">
-            <Link to="/payment" className="text-white">
-              Continue
-            </Link>
-          </button>
+          <input type="text" 
+            placeholder="Enter address" 
+            value={address} 
+            onChange={(e) => setAddress(e.target.value)}/>
+
+          <input type="text" 
+            placeholder="Enter city"
+            value={city} 
+            onChange={(e) => setCity(e.target.value)} />
+
+          <input type="text" 
+            placeholder="Enter postal code"
+            value={postalCode} 
+            onChange={(e) => setPostalCode(e.target.value)}/>
+
+          <input type="text" 
+            placeholder="Enter country" 
+            value={country} 
+            onChange={(e) => setCountry(e.target.value)}/>
+
+          <button type="submit">Continue</button>
         </form>
       </div>
     </>

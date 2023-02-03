@@ -1,13 +1,14 @@
 import dotenv from 'dotenv'
 dotenv.config();
-
 import express from "express";
 import cors from "cors";    
 import ConnectDb from './config/MongoDb.js'
 import seedData from './DataSeed.js';
 import productRoute from './Routes/ProductRoutes.js';
-// import { errorHandler, notFound } from './Middleware/Errors.js';
 import userRoute from './Routes/UserRoutes.js';
+import orderRoute from './Routes/orderRoutes.js';
+// import { errorHandler, notFound } from './Middleware/Errors.js';
+
 
 // //Extra security
 // const helmet = require('helmet')
@@ -23,9 +24,16 @@ app.use(express.json());
 
 
 // API
-app.use("/api", seedData);
-app.use("/api", productRoute);
+app.use("/api/", seedData);
+app.use("/api/", productRoute);
 app.use("/api/users", userRoute);
+app.use("/api/orders", orderRoute);
+
+// Query Paypal
+app.get("/api/config/paypal", (req, res) => {
+    console.log("requested")
+    return res.send(process.env.PAYPAL_CLIENT_ID);
+})
 
 // ERROR HANDLER
 // app.use(notFound);
