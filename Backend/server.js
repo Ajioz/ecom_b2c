@@ -25,7 +25,7 @@ app.use(express.json());
 
 // API
 app.use("/api/", seedData);
-app.use("/api/", productRoute);
+app.use("/api/products", productRoute);
 app.use("/api/users", userRoute);
 app.use("/api/orders", orderRoute);
 
