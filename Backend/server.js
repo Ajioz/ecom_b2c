@@ -7,7 +7,8 @@ import seedData from './DataSeed.js';
 import productRoute from './Routes/ProductRoutes.js';
 import userRoute from './Routes/UserRoutes.js';
 import orderRoute from './Routes/orderRoutes.js';
-// import { errorHandler, notFound } from './Middleware/Errors.js';
+import subRoute from './Routes/subRoutes.js';
+
 
 
 // //Extra security
@@ -28,6 +29,8 @@ app.use("/api/", seedData);
 app.use("/api/products", productRoute);
 app.use("/api/users", userRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/subscribers", subRoute);
+
 
 // Query Paypal
 app.get("/api/config/paypal", (req, res) => {
@@ -35,9 +38,6 @@ app.get("/api/config/paypal", (req, res) => {
     return res.send(process.env.PAYPAL_CLIENT_ID);
 })
 
-// ERROR HANDLER
-// app.use(notFound);
-// app.use(errorHandler);
 
 
 const start = async () => {
