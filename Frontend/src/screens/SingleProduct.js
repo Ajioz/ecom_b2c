@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import Toast from '../components/LoadingError/Toast'
 import moment from 'moment'
 import Header from "./../components/Header";
 import Rating from "../components/homeComponents/Rating";
@@ -14,6 +16,16 @@ const SingleProduct = ({history,  match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState(" ");
+
+  const toastId = React.useRef(null);
+
+  const ToastParams = {
+    pauseOnFocusLoss : false,
+    draggable: false,
+    pauseOnHover:false,
+    autoClose:2000
+  }
+
 
   const dispatch = useDispatch();
   const productId = match.params.id;
@@ -31,9 +43,9 @@ const SingleProduct = ({history,  match }) => {
     success:successCreateReview 
   } = productReviewCreate;
 
+  
   useEffect(() => {
     if(successCreateReview){
-      alert("Review Submitted");
       setRating(0);
       setComment("");
       dispatch({type: PRODUCT_CREATE_REVIEW_RESET});
@@ -51,12 +63,16 @@ const SingleProduct = ({history,  match }) => {
     dispatch(createProductReview(productId, {
       rating,
       comment
-    }))
+    }));
+    if(!toast.isActive(toastId.current)) {
+        toastId.current = toast.success("Review Submitted", ToastParams);
+    }
   }
 
   return (
     <>
       <Header />
+      <Toast />
       <div className="container single-product">
         {
           loading ? (

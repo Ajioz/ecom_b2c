@@ -1,42 +1,125 @@
-import React from "react";
+import React from 'react';
+import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div className="footer">
-      <div className="justify-content-center d-flex">
-        <div className="card-name">
-          <img
-            alt="mastercard"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png"
-          />
+    <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' >
+      <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
+        <div className='me-5 d-none d-lg-block'>
+          <span>Get connected with us on social networks:</span>
         </div>
-        <div className="card-name">
-          <img
-            alt="visa"
-            src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"
-          />
-        </div>
-        <div className="card-name">
-          <img
-            alt="paypal"
-            src="https://pbs.twimg.com/media/EfTZlEnWAAMn1lX.png"
-          />
-        </div>
-        <div className="card-name">
-          <img
-            alt="express"
-            src="https://icons.iconarchive.com/icons/designbolts/credit-card-payment/256/American-Express-icon.png"
-          />
-        </div>
-        <div className="card-name">
-          <img
-            alt="discover"
-            src="https://icons-for-free.com/iconfiles/png/512/cash+checkout+discover+network+online+shopping+payment+method-1320191225548835050.png"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default Footer;
+        <div>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="facebook-f" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="twitter" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="google" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="instagram" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="linkedin" />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon fab icon="github" />
+          </a>
+        </div>
+      </section>
+
+      <section className=''>
+        <MDBContainer className='text-center text-md-start mt-5'>
+          <MDBRow className='mt-3'>
+            <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>
+                <MDBIcon icon="gem" className="me-3" />
+                Company name
+              </h6>
+              <p>
+                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit.
+              </p>
+            </MDBCol>
+
+            <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Angular
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  React
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Vue
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Laravel
+                </a>
+              </p>
+            </MDBCol>
+
+            <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Pricing
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Settings
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Orders
+                </a>
+              </p>
+              <p>
+                <a href='#!' className='text-reset'>
+                  Help
+                </a>
+              </p>
+            </MDBCol>
+
+            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+              <p>
+                <MDBIcon icon="home" className="me-2" />
+                New York, NY 10012, US
+              </p>
+              <p>
+                <MDBIcon icon="envelope" className="me-3" />
+                info@example.com
+              </p>
+              <p>
+                <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
+              </p>
+              <p>
+                <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
+              </p>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
+
+      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+        © {new Date().getFullYear()} Copyright:{" "}
+        <a className='text-reset fw-bold' href='https://ajiozi.com/'>
+          Powered by Ajiozi
+        </a>
+      </div>
+    </MDBFooter>
+  );
+}

@@ -1,6 +1,10 @@
+
 body {
   margin: 0;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Josefin Sans", sans-serif, Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   /* font-family: 'Open Sans', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

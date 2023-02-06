@@ -1,17 +1,17 @@
 import express from 'express';
 import { 
-    createSubscriber,
-    getSubscribers,
+    createSubscriber, 
+    deleteSubscriber, 
+    getSubscribers 
 } from '../controllers/subController.js';
-
 
 const subRoute = express.Router();
 
 // Get Subscribers
-subRoute.get('/', getSubscribers);
+subRoute.route('/').get(getSubscribers).post(createSubscriber);
 
-// Create Subscriber
-subRoute.post('/', createSubscriber);
+// Delete Subscriber
+subRoute.delete('/:id', deleteSubscriber);
 
 
 export default subRoute;

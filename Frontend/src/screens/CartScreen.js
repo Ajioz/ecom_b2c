@@ -13,10 +13,6 @@ const CartScreen = ({match, location, history}) => {
   const cartItem = useSelector((state) => state.cart);
   const { cartItems } = cartItem
 
-  // const totalPrice = cartItems.map((item) => {
-  //   return item.price * item.qty;
-  // }).reduce((x, y) => x + y).toFixed(2);
-
   const totalPrice = cartItems.reduce((a, i) => a + i.qty * i.price, 0).toFixed(2);
 
   useEffect(() => {

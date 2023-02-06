@@ -46,8 +46,6 @@ export const createOrder = (order) => async(dispatch, getState) => {
 }
 
 
-
-
 // GET ORDER DETAILS
 export const getOrderDetails = (id) => async(dispatch, getState) => {
     try {
