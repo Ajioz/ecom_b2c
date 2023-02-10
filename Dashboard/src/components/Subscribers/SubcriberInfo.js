@@ -9,7 +9,7 @@ const SubcriberInfo = ({subscribers}) => {
       <thead>
         <tr>
           <th scope="col">SN</th>
-          <th scope="col">ID</th>
+          <th scope="col">Subscriber ID</th>
           <th scope="col">Email</th>
         </tr>
       </thead>
@@ -20,9 +20,7 @@ const SubcriberInfo = ({subscribers}) => {
                 <td>
                   <b>{index+1}</b>
                 </td>
-                <td>
-                  <b>{subscriber._id}</b>
-                </td>
+                <td><i>{subscriber._id}</i></td>
                 <td>{subscriber.email}</td>
                 <td className="d-flex justify-content-end align-item-center">
                   <Link to="#" className="text-success">
