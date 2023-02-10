@@ -10,7 +10,6 @@ import orderRoute from './Routes/orderRoutes.js';
 import subRoute from './Routes/subRoutes.js';
 
 
-
 // //Extra security
 // const helmet = require('helmet')
 // import xss from 'xss-clean'
@@ -37,7 +36,6 @@ app.get("/api/config/paypal", (req, res) => {
     console.log("requested")
     return res.send(process.env.PAYPAL_CLIENT_ID);
 })
-
 
 
 const start = async () => {

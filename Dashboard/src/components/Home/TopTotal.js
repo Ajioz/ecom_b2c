@@ -1,6 +1,12 @@
 import React from "react";
 
-const TopTotal = () => {
+const TopTotal = ({ orders, products }) => {
+  let totalSale = 0;
+  if(orders){
+    orders.map((order) => (
+      order.isPaid ? (totalSale += order.totalPrice) : null
+    ))
+  }
   return (
     <div className="row">
       <div className="col-lg-4">
@@ -10,7 +16,7 @@ const TopTotal = () => {
               <i className="text-primary fas fa-usd-circle"></i>
             </span>
             <div className="text">
-              <h6 className="mb-1">Total Sales</h6> <span>$22,678</span>
+              <h6 className="mb-1">Total Sales</h6> <span>${totalSale.toFixed(0)}</span>
             </div>
           </article>
         </div>
@@ -23,7 +29,7 @@ const TopTotal = () => {
             </span>
             <div className="text">
               <h6 className="mb-1">Total Orders</h6>
-              <span>130</span>
+              {orders ? <span>{orders.length}</span> : <span>0</span>}
             </div>
           </article>
         </div>
@@ -36,7 +42,7 @@ const TopTotal = () => {
             </span>
             <div className="text">
               <h6 className="mb-1">Total Products</h6>
-              <span>70</span>
+              {products ? <span>{products.length}</span> : <span>0</span>}
             </div>
           </article>
         </div>

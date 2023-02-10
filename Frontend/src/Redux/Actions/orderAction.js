@@ -45,7 +45,6 @@ export const createOrder = (order) => async(dispatch, getState) => {
     }
 }
 
-
 // GET ORDER DETAILS
 export const getOrderDetails = (id) => async(dispatch, getState) => {
     try {
@@ -70,7 +69,6 @@ export const getOrderDetails = (id) => async(dispatch, getState) => {
         }));
     }
 }
-
 
 // USER ORDERS
 export const payOrder = (orderId, paymentResult) => async(dispatch, getState) => {

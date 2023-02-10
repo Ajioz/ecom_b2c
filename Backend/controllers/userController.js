@@ -7,6 +7,7 @@ import generateToken from '../utils/generateToken.js'
 export const Login = asyncHandler(async(req, res) => {
     try {
         const {email, password } = req.body;
+        // console.log(email, password)
         const user = await User.findOne({ email });
         const data = { _id: user._id, isAdmin: user.isAdmin   }
         const token = generateToken(data);
@@ -86,5 +87,19 @@ export const updateProfile = asyncHandler(async(req, res) => {
         }
     } catch (error) {
         return res.status(404).json({message: error})
+    }
+})
+
+
+// GET ALL USERS ADMIN
+export const getAllUsers = asyncHandler(async(req, res) => {
+    const { isAdmin } = req.user;
+    try {
+        if(!isAdmin) return res.status(401).json({message: "You are not admin"})
+        const users = await User.find({});
+        return res.status(200).json(users)
+    } catch (error) {
+        console.error(error)
+        return res.status(400).json({message: "Couldn't process your request!"})
     }
 })

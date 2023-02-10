@@ -3,11 +3,16 @@ import protect from '../Middleware/AuthMiddleWare.js';
 const userRoute = express.Router();
 
 import { 
+    getAllUsers,
     Login, 
     Profile, 
     Register, 
     updateProfile 
 } from '../controllers/userController.js';
+
+
+// GET ALL USER ADMIN
+userRoute.get('/', protect, getAllUsers);
 
 // USER LOGIN
 userRoute.post('/login', Login);
@@ -15,11 +20,8 @@ userRoute.post('/login', Login);
 // REGISTER
 userRoute.post('/signup', Register);
 
-// PROFILE
-userRoute.get('/profile', protect, Profile);
-
-// UPDATE PROFILE
-userRoute.put('/profile', protect, updateProfile);
+// PROFILE & UPDATE PROFILE
+userRoute.route('/profile').get(protect, Profile).put(protect, updateProfile)
 
 
 export default userRoute;

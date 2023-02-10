@@ -1,19 +1,18 @@
 import React from "react";
 import Sidebar from "./../components/sidebar";
 import Header from "./../components/Header";
-import OrderDetailmain from "../components/orders/OrderDetailmain";
+import Subscribers from "../components/Subscribers/Subscribers";
 
-const OrderDetailScreen = ({ match }) => {
-  const orderId = match.params.id
+const subscribeScreen = () => {
   return (
     <>
       <Sidebar />
       <main className="main-wrap">
         <Header />
-        <OrderDetailmain  orderId={orderId}/>
+        <Subscribers />
       </main>
     </>
   );
 };
 
-export default OrderDetailScreen;
+export default subscribeScreen;

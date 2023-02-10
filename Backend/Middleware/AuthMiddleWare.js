@@ -15,7 +15,7 @@ const protect = asyncHandler(async(req, res, next) => {
             token = authorization.split(" ")[1];
             let decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
             req.user = await User.findById(decodedToken._id).select('-password');
-            // console.log(decodedToken)
+            // console.log(req.user)
             next()
         } catch (error) {
             return res.status(401).json({message:"Not Authorized, token failed!"})
@@ -24,5 +24,11 @@ const protect = asyncHandler(async(req, res, next) => {
         return res.status(401).json({message: "Not eligible, no token!"})
     }
 })
+
+export const Admin = (req, res, next) => {
+    const { isAdmin } = req.user;
+    if(!isAdmin) return res.status(401).json({Message: "Not Authorized to perform this operation"})
+    next();
+}
 
 export default protect;

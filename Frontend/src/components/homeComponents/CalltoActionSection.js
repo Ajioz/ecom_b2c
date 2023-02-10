@@ -40,8 +40,8 @@ const CalltoActionSection = () => {
           <div className="row">
             <div className="col-xs-12">
               <div className="subscribe-head">
-                <h2>Do you need more tips?</h2>
-                <p>Sign up free and get the latest tips.</p>
+                <h2>Care for latest collection?</h2>
+                <p>Sign up free to get latest updates.</p>
                 <form className="form-section" onSubmit={subHandler}>
                   <input 
                       placeholder="Your Email..." 

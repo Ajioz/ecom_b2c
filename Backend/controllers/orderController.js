@@ -9,7 +9,20 @@ export const userOrder = asyncHandler(async(req, res) => {
         const order = await Order.find({user: req.user._id}).sort({_id: -1})
         return res.status(200).json(order);
     } catch (error) {
-        return res.status(400).json({message: error});
+        console.error(error)
+        return res.status(400).json({message: "We couldn't process request"});
+    } 
+});
+
+
+// ADMIN GET ALL ORDERS
+export const adminGetOrders = asyncHandler(async(req, res) => {
+    try {
+        const orders = await Order.find({ }).sort({_id: -1}).populate("user", "id name email")
+        return res.status(200).json(orders);
+    } catch (error) {
+        console.error(error)
+        return res.status(400).json({message: "We couldn't process request"});
     } 
 });
 
@@ -25,12 +38,10 @@ export const createOrder = asyncHandler(async(req, res) => {
         taxPrice, 
         totalPrice
     } = req.body;
-
     itemsPrice = Number(itemsPrice);
     shippingPrice = Number(shippingPrice);
     taxPrice = Number(taxPrice);
     totalPrice = Number(totalPrice);
-
     try {
         if(orderItems && orderItems.length === 0)return res.status(400).json({message: "No order items"})
         else {
@@ -52,6 +63,7 @@ export const createOrder = asyncHandler(async(req, res) => {
         return res.status(404).json({message: error})
     }
 });
+
 
 // GET ORDER by ID
 export const getOrderId = asyncHandler(async(req, res) => {
@@ -85,6 +97,24 @@ export const orderIsPaid = asyncHandler(async(req, res) => {
         }
         const updateOrder = await order.save();
         return res.status(201).json(updateOrder);
+    } catch (error) {
+        console.log(error)
+        return res.status(404).json({message: "Server Error"});
+    }
+})
+
+
+
+// ORDER IS PAID
+export const orderIsDelivered = asyncHandler(async(req, res) => {
+    const order = await Order.findById(req.params.id)
+    try {
+        if(order){
+            order.isDelivered = true;
+            order.deliveredAt = Date.now();
+        }
+        const updateOrder = await order.save();
+        return res.status(201).json(    );
     } catch (error) {
         console.log(error)
         return res.status(404).json({message: "Server Error"});

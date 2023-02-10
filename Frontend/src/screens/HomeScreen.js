@@ -16,20 +16,20 @@ const HomeScreen = ({match}) => {
   return (
     <div>
       <Header />
-      <Container>
-        <Box>
+      <Container className="slide-container">
+        <Box className="resp">
           <Boxmini>Men Collection</Boxmini>
           <Boxmini>Women Collection</Boxmini>
           <Boxmini>Corperate wears</Boxmini>
           <Boxmini>Men Senator</Boxmini>
           <Boxmini>Ladies Bags</Boxmini>
           <Boxmini>Ankara & Agbada</Boxmini>
-          <Boxmini>Wrists Watches</Boxmini>
+          <Boxmini>Wrist Watches</Boxmini>
           <Boxmini>African Attire</Boxmini>
           <Boxmini>Men Shoes</Boxmini>
           <Boxmini>Gadgets</Boxmini>
         </Box>
-        <MySlide>
+        <MySlide className="slide">
             <Carousel />
         </MySlide>
       </Container>

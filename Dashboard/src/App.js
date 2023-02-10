@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import "./responsive.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,28 +7,47 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/productScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import OrderScreen from "./screens/OrderScreen";
+import subscribeScreen from "./screens/subscribeScreen";
 import OrderDetailScreen from "./screens/OrderDetailScreen";
 import AddProduct from "./screens/AddProduct";
 import Login from "./screens/LoginScreen";
 import UsersScreen from "./screens/UsersScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import NotFound from "./screens/NotFound";
+import PrivateRouter from "./ProvateRouter";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "./Redux/Actions/ProductAction";
+import { listOrders } from "./Redux/Actions/orderAction"
+
 
 function App() {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if(userInfo && userInfo.isAdmin){
+      dispatch(listProducts());
+      dispatch(listOrders());
+    }
+  }, [dispatch, userInfo])
+  
   return (
     <>
       <Router>
         <Switch>
-          <Route path="/" component={HomeScreen} exact />
-          <Route path="/products" component={ProductScreen} />
-          <Route path="/category" component={CategoriesScreen} />
-          <Route path="/orders" component={OrderScreen} />
-          <Route path="/order" component={OrderDetailScreen} />
-          <Route path="/addproduct" component={AddProduct} />
-          <Route path="/users" component={UsersScreen} />
-          <Route path="/product/:id/edit" component={ProductEditScreen} />
+          <PrivateRouter path="/" component={HomeScreen} exact />
+          <PrivateRouter path="/products" component={ProductScreen} />
+          <PrivateRouter path="/category" component={CategoriesScreen} />
+          <PrivateRouter path="/orders" component={OrderScreen} />
+          <PrivateRouter path="/subscribers" component={subscribeScreen} />
+          <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
+          <PrivateRouter path="/addproduct" component={AddProduct} />
+          <PrivateRouter path="/users" component={UsersScreen} />
+          <PrivateRouter path="/product/:id/edit" component={ProductEditScreen} />
           <Route path="/login" component={Login} />
-          <Route path="*" component={NotFound} />
+          <PrivateRouter path="*" component={NotFound} />
         </Switch>
       </Router>
     </>

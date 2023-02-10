@@ -1,7 +1,11 @@
 import express from 'express';
 import protect from '../Middleware/AuthMiddleWare.js'
-
+import { Admin } from '../Middleware/AuthMiddleWare.js'
 import {
+    createProduct,
+    deleteProduct,
+    editProduct,
+    getAllProductAdmin,
     getAllProducts, 
     getOneProduct,
     productReview,
@@ -9,13 +13,16 @@ import {
 
 const productRoute = express.Router();
 
-// GET ALL PRODUCTS
-productRoute.get('/', getAllProducts)
+// GET ALL PRODUCTS & CREATE PRODUCT
+productRoute.route('/').get(getAllProducts).post(protect, Admin, createProduct)
 
-// GET ONE PRODUCT
-productRoute.get('/:id', getOneProduct);
+// Get all product without search and pagination - Admin
+productRoute.get('/all', protect, Admin, getAllProductAdmin);
 
-//PRODUCT REVIEW 
+// GET, EDIT & DELETE ONE PRODUCT
+productRoute.route('/:id').get(getOneProduct).put(protect, Admin, editProduct).delete(protect, Admin, deleteProduct);
+
+// PRODUCT REVIEW 
 productRoute.post('/:id/review', protect, productReview);
 
 export default productRoute;

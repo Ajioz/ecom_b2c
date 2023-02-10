@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-   
 
 
 export const Container = styled.div`
@@ -28,7 +27,7 @@ export const Boxmini = styled.div`
     bottom: 0;
     width: 80%;
     border-radius: 10px;
-    padding: 2px 25px;
+    padding: 2.2px 25px;
     margin: 10px;
     box-shadow: 0 5px 15px rgba(135, 206, 235, 0.5);
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -44,7 +43,6 @@ export const Boxmini = styled.div`
 `;
 
 export const MySlide = styled.div`
-  width: 60%;
+  width: 65%;
+  height: 45%;
 `;
-   
-   

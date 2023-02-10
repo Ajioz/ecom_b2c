@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import $ from "jquery";
+import { logout } from "../Redux/Actions/userActions";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
   useEffect(() => {
     $("[data-trigger]").on("click", function (e) {
       e.preventDefault();
@@ -22,10 +26,14 @@ const Header = () => {
     });
   }, []);
 
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
+
   return (
     <header className="main-header navbar">
       <div className="col-search">
-        <form className="searchform">
+        <form className="searchform" onSubmit={""}>
           <div className="input-group">
             <input
               list="search_terms"
@@ -83,9 +91,9 @@ const Header = () => {
               <Link className="dropdown-item" to="#">
                 Settings
               </Link>
-              <Link className="dropdown-item text-danger" to="#">
+              <Link onClick={logoutHandler} className="dropdown-item text-danger" to="#">
                 Exit
-              </Link>
+              </Link> 
             </div>
           </li>
         </ul>
