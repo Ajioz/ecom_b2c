@@ -20,13 +20,13 @@ const HomeScreen = ({match}) => {
         <Box className="resp">
           <Boxmini>Men Collection</Boxmini>
           <Boxmini>Women Collection</Boxmini>
-          <Boxmini>Corperate wears</Boxmini>
-          <Boxmini>Men Senator</Boxmini>
+          <Boxmini>Children's World </Boxmini>
+          <Boxmini>Native Outfitters</Boxmini>
           <Boxmini>Ladies Bags</Boxmini>
           <Boxmini>Ankara & Agbada</Boxmini>
           <Boxmini>Wrist Watches</Boxmini>
-          <Boxmini>African Attire</Boxmini>
-          <Boxmini>Men Shoes</Boxmini>
+          <Boxmini>Senators - Men</Boxmini>
+          <Boxmini>Latest Shoes</Boxmini>
           <Boxmini>Gadgets</Boxmini>
         </Box>
         <MySlide className="slide">

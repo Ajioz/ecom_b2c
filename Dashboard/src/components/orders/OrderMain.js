@@ -1,12 +1,10 @@
 import React from "react";
 import Orders from "./Orders";
-import { useDispatch, useSelector } from "react-redux";   
+import { useSelector } from "react-redux";   
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 
 const OrderMain = () => {
-
-  const dispatch = useDispatch();
 
   const orderList = useSelector(state => state.orderList);
   const { loading, orders, error } = orderList;

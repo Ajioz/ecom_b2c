@@ -78,7 +78,7 @@ export const productReview = asyncHandler(async(req, res) => {
             user: req.user._id
         }
         product.reviews.push(review);
-        product.numReviews = product.reviews?.length;
+        product.numberReview = product.reviews?.length;
         product.rating = product.reviews.reduce((acc, item ) => item.rating + acc, 0) / product.reviews.length;
         await product.save();
         return res.status(201).json({message: "Review added"});
@@ -146,5 +146,3 @@ export const editProduct = asyncHandler(async(req, res) => {
         return res.status(400).json({message: "Something didn't go well with request"})
     }
 });
-
-//

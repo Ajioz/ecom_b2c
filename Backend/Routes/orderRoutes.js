@@ -5,6 +5,7 @@ import {
     getOrderId,
     orderIsDelivered,
     orderIsPaid,
+    orderSummary,
     userOrder,
  } from '../controllers/orderController.js';
 import protect, { Admin } from '../Middleware/AuthMiddleWare.js';
@@ -25,6 +26,9 @@ orderRoute.get('/:id', protect, getOrderId);
 
 // ORDER IS PAID
 orderRoute.put('/:id/pay', protect, orderIsPaid);
+
+// ORDER SUMMARY IS SENT
+orderRoute.put('/:id/ordersummary', protect, orderSummary);
 
 
 // ORDER IS PAID

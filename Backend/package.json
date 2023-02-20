@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server.js",
-    "dev":"nodemon ./server.js"
+    "dev": "nodemon ./server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,9 +18,14 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
+    "infobip": "^0.1.0",
+    "infobip-nodejs": "^0.1.1",
     "jsonwebtoken": "^9.0.0",
+    "mailgen": "^2.0.27",
     "mongoose": "^6.8.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.0",
+    "nodemailer": "^6.9.1"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",

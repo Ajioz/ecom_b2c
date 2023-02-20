@@ -1,14 +1,12 @@
 import React from "react";
 import TopTotal from "./TopTotal";
 import LatestOrder from "./LatestOrder";
-import { useDispatch, useSelector } from "react-redux";   
+import { useSelector } from "react-redux";   
 import SaleStatistics from "./SalesStatistics";
 import ProductsStatistics from "./ProductsStatistics";
 
 
 const Main = () => {
-
-  const dispatch = useDispatch();
 
   const orderList = useSelector(state => state.orderList);
   const { loading, orders, error } = orderList;

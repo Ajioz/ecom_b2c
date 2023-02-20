@@ -25,6 +25,7 @@ const orderSchema = mongoose.Schema({
         city: {type: String, required:true},
         postalCode:{type: String, required:true},
         country:{type: String, required:true},
+        phoneNumber: { type: Number, required:true},
    },
    paymentMethod:{
         type:String,
@@ -61,6 +62,11 @@ const orderSchema = mongoose.Schema({
     type:Boolean,
     required:true,
     default:false
+   },
+   pushNotify:{
+     type: Boolean,
+     required:true,
+     default:false
    },
    paidAt:{
     type: Date

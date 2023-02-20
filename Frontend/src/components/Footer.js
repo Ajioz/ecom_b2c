@@ -10,23 +10,20 @@ export default function Footer() {
         </div>
 
         <div>
-          <a href='' className='me-4 text-reset'>
+          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank"  rel="noreferrer">
             <MDBIcon fab icon="facebook-f" />
           </a>
-          <a href='' className='me-4 text-reset'>
+          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="twitter" />
           </a>
-          <a href='' className='me-4 text-reset'>
+          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="google" />
           </a>
-          <a href='' className='me-4 text-reset'>
+          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank" rel="noreferrer" >
             <MDBIcon fab icon="instagram" />
           </a>
-          <a href='' className='me-4 text-reset'>
+          <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="linkedin" />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <MDBIcon fab icon="github" />
           </a>
         </div>
       </section>
@@ -37,11 +34,10 @@ export default function Footer() {
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
                 <MDBIcon icon="gem" className="me-3" />
-                Company name
+                hubSandy Collection
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit.
+                We produce and deliver high quality products of various sizes that meet your need
               </p>
             </MDBCol>
 
@@ -49,22 +45,22 @@ export default function Footer() {
               <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
               <p>
                 <a href='#!' className='text-reset'>
-                  Angular
+                  Native Outfits
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  React
+                  Western Outfits
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Vue
+                  Gadgets
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Laravel
+                  Children's World
                 </a>
               </p>
             </MDBCol>
@@ -73,17 +69,17 @@ export default function Footer() {
               <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
               <p>
                 <a href='#!' className='text-reset'>
-                  Pricing
+                  Contact
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Settings
+                <a href='/login' className='text-reset'>
+                  login
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Orders
+                <a href='/register' className='text-reset'>
+                  Register
                 </a>
               </p>
               <p>
@@ -97,17 +93,17 @@ export default function Footer() {
               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
               <p>
                 <MDBIcon icon="home" className="me-2" />
-                New York, NY 10012, US
+                Warri, Delta 332213, Nigeria
               </p>
               <p>
                 <MDBIcon icon="envelope" className="me-3" />
-                info@example.com
+                info@hubsandy.com
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
+                <MDBIcon icon="phone" className="me-3" /> +234-907 095 3512
               </p>
               <p>
-                <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
+                <MDBIcon icon="print" className="me-3" /> 907 095 3512
               </p>
             </MDBCol>
           </MDBRow>

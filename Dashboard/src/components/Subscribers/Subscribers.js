@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import SubcriberInfo from "./SubcriberInfo";
-import { useDispatch, useSelector } from "react-redux";   
+import { useSelector } from "react-redux";   
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import axios from "axios";
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalBody,
+  MDBModalFooter,
+} from 'mdb-react-ui-kit';
+import Email from "./EmailForm";
 
 const Subscribers = () => {
+
+  const [topRightModal, setTopRightModal] = useState(false);
+  const toggleShow = () => setTopRightModal(!topRightModal);
 
   const orderList = useSelector(state => state.orderList);
   const { loading, error } = orderList;
@@ -31,25 +44,57 @@ const Subscribers = () => {
   
 
   return (
-    <section className="content-main">
-      <div className="content-header">
-        <h4 className="content-title">Subscribers</h4>
-      </div>
+    <>
+      <section className="content-main">
+        <div className="content-header">
+          <h4 className="content-title">Subscribers</h4>
+          {/* <button type="button" className="btn btn-primary">Send eMail</button> */}
+          <MDBBtn onClick={toggleShow} >Send eMail</MDBBtn>
+        </div>
 
-      <div className="card mb-4 shadow-sm">
-        <div className="card-body">
-          <div className="table-responsive">
-            {
-              loading ?( <Loading /> 
-              ) : error ? (
-              <Message variant="alert-danger">{error}</Message>
-              ):(
-                 <SubcriberInfo subscribers={subscribers}/>
-              )}
+        <div className="card mb-4 shadow-sm">
+          <div className="card-body">
+            <div className="table-responsive">
+              {
+                loading ?( <Loading /> 
+                ) : error ? (
+                <Message variant="alert-danger">{error}</Message>
+                ):(
+                  <SubcriberInfo subscribers={subscribers}/>
+                )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* <!-- Modal --> */}
+        <MDBModal
+          animationDirection='right'
+          show={topRightModal}
+          tabIndex='-1'
+          setShow={setTopRightModal}>
+          <MDBModalDialog position='top-right' side>
+            <MDBModalContent>
+              <MDBModalHeader className='bg-info text-white'>
+                <MDBBtn
+                  color='none'
+                  className='btn-close btn-close-white'
+                  onClick={toggleShow}
+                ></MDBBtn>
+              </MDBModalHeader>
+              <MDBModalBody>
+                <Email />
+              </MDBModalBody>
+              <MDBModalFooter>
+                <MDBBtn outline color='info' onClick={toggleShow}>
+                  Close
+                </MDBBtn>
+              </MDBModalFooter>
+            </MDBModalContent>
+          </MDBModalDialog>
+        </MDBModal>
+    </>
+   
   );
 };
 

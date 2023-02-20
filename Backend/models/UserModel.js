@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
             required: [true, 'Please provide password'],
             minLength: 6,
         },
+        phoneNumber:{
+            type:Number,
+            required:true,
+        },
         isAdmin:{
             type:Boolean,
             required:true,

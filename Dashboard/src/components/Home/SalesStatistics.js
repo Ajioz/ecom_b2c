@@ -6,7 +6,7 @@ const SaleStatistics = () => {
       <div className="card mb-4 shadow-sm">
         <article className="card-body">
           <h5 className="card-title">Sale statistics</h5>
-         <iframe
+         <iframe title="salestatics"
             style={{
               background: "#fff",
               border: "none",
@@ -15,7 +15,7 @@ const SaleStatistics = () => {
               width: "100%",
               height: "350px"
             }}
-            src="https://charts.mongodb.com/charts-shoeshoptutorial-bzbxw/embed/charts?id=1">
+            src="https://charts.mongodb.com/charts-project_0-lqolr/embed/charts?id=63e8b86b-67a6-460d-828a-0caf75a6cc08&maxDataAge=3600&theme=light&autoRefresh=true">
           </iframe>
         </article>
       </div>

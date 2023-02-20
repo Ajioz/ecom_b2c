@@ -101,7 +101,7 @@ const SingleProduct = ({history,  match }) => {
                         </div>
                         <div className="flex-box d-flex justify-content-between align-items-center">
                           <h6>Status</h6>
-                          {product?.countInStock > 0 ? (
+                          {product?.stock > 0 ? (
                             <span>In Stock</span>
                           ) : (
                             <span>unavailable</span>
@@ -111,7 +111,8 @@ const SingleProduct = ({history,  match }) => {
                           <h6>Reviews</h6>
                           <Rating
                             value={product?.rating}
-                            text={`${product?.numReviews} reviews`}
+                            text={
+                              `${product?.numberReview} review(s)`}
                           />
                         </div>
                         {/*  */}

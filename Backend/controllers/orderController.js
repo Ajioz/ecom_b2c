@@ -3,7 +3,7 @@ import Order from '../models/OrderModel.js';
 
 
 
-// USER ORDERS
+// GET USER ORDERS
 export const userOrder = asyncHandler(async(req, res) => {
     try {
         const order = await Order.find({user: req.user._id}).sort({_id: -1})
@@ -18,7 +18,7 @@ export const userOrder = asyncHandler(async(req, res) => {
 // ADMIN GET ALL ORDERS
 export const adminGetOrders = asyncHandler(async(req, res) => {
     try {
-        const orders = await Order.find({ }).sort({_id: -1}).populate("user", "id name email")
+        const orders = await Order.find({ }).sort({_id: -1}).populate("user", "id name email phoneNumber")
         return res.status(200).json(orders);
     } catch (error) {
         console.error(error)
@@ -36,12 +36,16 @@ export const createOrder = asyncHandler(async(req, res) => {
         itemsPrice, 
         shippingPrice, 
         taxPrice, 
-        totalPrice
+        totalPrice,
+        phoneNumber,
+        code,
     } = req.body;
     itemsPrice = Number(itemsPrice);
     shippingPrice = Number(shippingPrice);
     taxPrice = Number(taxPrice);
     totalPrice = Number(totalPrice);
+    code = Number(code);
+    phoneNumber = Number(phoneNumber);
     try {
         if(orderItems && orderItems.length === 0)return res.status(400).json({message: "No order items"})
         else {
@@ -53,7 +57,8 @@ export const createOrder = asyncHandler(async(req, res) => {
                 itemsPrice, 
                 shippingPrice, 
                 taxPrice, 
-                totalPrice
+                totalPrice,
+                phoneNumber
             })
             const createOrder = await order.save();
             return res.status(201).json(createOrder); 
@@ -69,7 +74,7 @@ export const createOrder = asyncHandler(async(req, res) => {
 export const getOrderId = asyncHandler(async(req, res) => {
     const order = await Order.findById(req.params.id).populate(
     "user",
-    "name email",
+    "name email phoneNumber, pushNotify",
     )
     try {
         if(order) return res.status(200).json(order)
@@ -105,7 +110,23 @@ export const orderIsPaid = asyncHandler(async(req, res) => {
 
 
 
-// ORDER IS PAID
+// ORDER SUMMARY IS SENT
+export const orderSummary = asyncHandler(async(req, res) => {
+    const order = await Order.findById(req.params.id)
+    try {
+        if(order){
+            order.pushNotify = true;
+        }
+        await order.save();
+        return res.status(201).json(order);
+    } catch (error) {
+        console.log(error)
+        return res.status(404).json({message: "Server Error"});
+    }
+})
+
+
+// ORDER IS DELIVERED
 export const orderIsDelivered = asyncHandler(async(req, res) => {
     const order = await Order.findById(req.params.id)
     try {
@@ -113,8 +134,8 @@ export const orderIsDelivered = asyncHandler(async(req, res) => {
             order.isDelivered = true;
             order.deliveredAt = Date.now();
         }
-        const updateOrder = await order.save();
-        return res.status(201).json(    );
+        await order.save();
+        return res.status(201).json(order);
     } catch (error) {
         console.log(error)
         return res.status(404).json({message: "Server Error"});

@@ -15,14 +15,13 @@ const PlaceOrderScreen = ({history}) => {
   const cart = useSelector(state => state.cart)
 
   const { 
-    shippingAddress: { address, city, country, postalCode}, 
+    shippingAddress: { address, city, country, postalCode, phoneNumber}, 
     cartItems: [{ qty }],
     paymentMethod, 
   } = cart;
 
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo: { name, email } } = userLogin;
-
 
   // Calculate price
   const addDecimals = (num) => {
@@ -53,6 +52,7 @@ const PlaceOrderScreen = ({history}) => {
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
+        pushNotify:false
       })
     )
   };
@@ -111,12 +111,9 @@ const PlaceOrderScreen = ({history}) => {
                 </div>
               </div>
               <div className="col-md-8 center">
-                <h5>
-                  <strong>Deliver to</strong>
-                </h5>
-                <p>
-                  Address: {address}, {city}, {postalCode}
-                </p>
+                <h5> <strong>Deliver to</strong></h5>
+                <p>Address: {address}, {city}, {postalCode}</p>
+                <p>Phone No:{"\n "} {phoneNumber}</p>
               </div>
             </div>
           </div>

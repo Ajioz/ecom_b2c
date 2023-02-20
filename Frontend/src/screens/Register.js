@@ -11,6 +11,7 @@ const Register = ({location, history}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(0)
 
   const dispatch = useDispatch();
   const redirect = location.search ? location.search.split("=")[1]:"/"
@@ -23,12 +24,12 @@ const Register = ({location, history}) => {
     if(userInfo){
       history.push(redirect)
     }
-  
-  }, [userInfo, history, redirect]);
+  },[userInfo, history, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(signup(name, email, password))
+    dispatch(signup(name, email, password, phoneNumber))
+    window.location = '/login';
   }
 
   return (
@@ -38,6 +39,7 @@ const Register = ({location, history}) => {
         {error && <Message variant={"alert-danger"}>{error}</Message>}
         {loading && <Loading />}
         <form className="Login col-md-8 col-lg-4 col-11" onSubmit={submitHandler}>
+          
           <input type="text" 
             placeholder="Username" 
             value={name} 
@@ -52,6 +54,11 @@ const Register = ({location, history}) => {
             placeholder="Password" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)}/>
+
+          <input type="phoneNumber" 
+            placeholder="Phone number" 
+            value={phoneNumber} 
+            onChange={(e) => setPhoneNumber(e.target.value)}/>
 
           <button type="submit">Register</button>
           <p>

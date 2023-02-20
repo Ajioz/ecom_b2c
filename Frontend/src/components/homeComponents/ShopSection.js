@@ -51,11 +51,13 @@ const ShopSection = (props) => {
                                     {product.name}
                                   </Link>
                                 </p>
-
                                 <Rating
                                   value={product.rating}
-                                  text={`${product.numReviews} reviews`}
-                                />
+                                  text={
+                                    product.numberReview.length > 1 
+                                    ? `${product.numberReview} reviews` 
+                                    : `${product.numberReview} review`
+                                   } />
                                 <h3>${product.price}</h3>
                               </div>
                             </div>

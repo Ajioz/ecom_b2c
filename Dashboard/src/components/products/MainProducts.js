@@ -11,7 +11,7 @@ const MainProducts = () => {
   const dispatch = useDispatch();
   
   const productList = useSelector((state) => state.productList);
-  const {loading, products, error } = productList;
+  const {products, error } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
   const {loading: deleteLoading, error:deleteError, success:deleteSuccess} = productDelete;
@@ -62,7 +62,7 @@ const MainProducts = () => {
 
         <div className="card-body">
           {deleteError && (<Message variant={"alert-danger"}>{deleteError}</Message>)}
-          {loading ? (<Loading />) 
+          {deleteLoading ? (<Loading />) 
             : error ? (<Message variant={"alert-danger"}>{error}</Message>)
             :(
                 <div className="row">

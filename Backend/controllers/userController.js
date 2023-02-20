@@ -7,7 +7,6 @@ import generateToken from '../utils/generateToken.js'
 export const Login = asyncHandler(async(req, res) => {
     try {
         const {email, password } = req.body;
-        // console.log(email, password)
         const user = await User.findOne({ email });
         const data = { _id: user._id, isAdmin: user.isAdmin   }
         const token = generateToken(data);
@@ -19,6 +18,7 @@ export const Login = asyncHandler(async(req, res) => {
                 email: user.email,
                 isAdmin: user.isAdmin,
                 token,
+                number: user.phoneNumber,
                 createdAt: user.createdAt,
             });
         }
@@ -34,7 +34,7 @@ export const Login = asyncHandler(async(req, res) => {
 // REGISTER Controller
 export const Register = asyncHandler(async(req, res) => {
     try {
-        const {name, email, isAdmin,  } = req.body;
+        const {name, email, phoneNumber, isAdmin,  } = req.body;
         const userExist = await User.findOne( {email });
         if(userExist){
             return res.status(400).json({message: "User Already Exist!"})
@@ -47,6 +47,7 @@ export const Register = asyncHandler(async(req, res) => {
                 _id:user._id,
                 name,
                 email,
+                phoneNumber,
                 isAdmin,
                 token,
                 message: "User saved successfully!"
@@ -61,9 +62,9 @@ export const Register = asyncHandler(async(req, res) => {
 // PROFILE
 export const Profile = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id);
-    const { _id, name, email, isAdmin, createdAt } = user;
+    const { _id, name, email, phoneNumber, isAdmin, createdAt } = user;
     try {
-        if(user) return res.status(200).json({_id, name, email, isAdmin, createdAt })
+        if(user) return res.status(200).json({_id, name, email, phoneNumber, isAdmin, createdAt })
         else return res.status(404).json({message: "User not found"})
     } catch (error) {
         return res.status(404).json({message: "User error"})
@@ -78,10 +79,11 @@ export const updateProfile = asyncHandler(async(req, res) => {
         if(user){
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
+            user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
             if(req.body.password) user.password = req.body.password;
             const updateUser = await user.save();
-            const { _id, name, email, isAdmin, createdAt } = updateUser;
-            return res.status(201).json({ _id, name, email, isAdmin, createdAt})
+            const { _id, name, email, phoneNumber, isAdmin, createdAt } = updateUser;
+            return res.status(201).json({ _id, name, email, phoneNumber, isAdmin, createdAt})
         }else{
             return res.status(404).json({message: "User not found"})
         }

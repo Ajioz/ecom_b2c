@@ -10,9 +10,10 @@ import moment from 'moment'
 import axios from "axios";
 import { ORDER_PAY_RESET } from "../Redux/Constants/OrderConstants";
 
+
 const OrderScreen = ({match}) => {
   window.scrollTo(0, 0);
-  
+  const [payLoading, setPayLoading] = useState(false)
   const [sdkReady, setSdkReady] = useState(false);
   const dispatch = useDispatch()
   const orderId = match.params.id;
@@ -22,6 +23,12 @@ const OrderScreen = ({match}) => {
  
   const orderPay = useSelector(state => state.orderPay);
   const { loading:loadingPay, success:successPay } = orderPay;
+
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const cart = useSelector(state => state.cart)
+  const { shippingAddress } = cart;
 
   // Calculate price
   if (!loading) {
@@ -61,16 +68,54 @@ const OrderScreen = ({match}) => {
   }, [dispatch, orderId, successPay, order, ])
   
   const successPayHandle = (paymentResult) => {
-    console.log(paymentResult)
+    setPayLoading(true);
     dispatch(payOrder(orderId, paymentResult));
   }
+
+  useEffect(() => {
+    const sendSummary = async() => {
+      const config = {
+          headers:{
+              "Content-Type": "application/json",
+               Authorization: `Bearer: ${userInfo.token}`,
+          },
+      };
+      if(order?.isPaid && !order?.isDelivered){
+        if(!order.pushNotify){
+          await axios.post(`http://localhost:5001/api/send/sms`, {
+            phoneNumber: order.shippingAddress.phoneNumber, 
+            code: shippingAddress.code,
+          }, config);
+
+          await axios.post(`http://localhost:5001/api/send/ordersummary`, {
+            subject:"Order Summary",
+            user: order.user.name, 
+            name:order.orderItems,
+            email: order.user.email,
+            totalPrice: order.totalPrice,
+            Address: order.shippingAddress.address,
+            city: order.shippingAddress.city,
+            postalCode: order.shippingAddress.postalCode,
+            country: order.shippingAddress.country, 
+          }, config); 
+
+          await axios.put(`/api/orders/${orderId}/ordersummary`, {}, config );   
+        }
+      }
+    } 
+
+    if(Loading){
+        sendSummary();
+    }
+
+  }, [order, payLoading, shippingAddress.code, userInfo.token])
+  
   return (
     <>
       <Header />
       <div className="container">
         {
-          loading ? (<Loading />) : error ? (<Message variant={"alert-danger"}>{error}</Message>) 
-          :(
+          loading ? ( <Loading /> ) : error ? (<Message variant={"alert-danger"}> { error } </Message>):(
             <>
               <div className="row  order-detail">
                 <div className="col-lg-4 col-sm-4 mb-lg-4 mb-5 mb-sm-0">
@@ -139,8 +184,9 @@ const OrderScreen = ({match}) => {
                         Address:{" "} 
                         {order.shippingAddress.address},{" "}  
                         {order.shippingAddress.city},{" "}  
-                        {order.shippingAddress.postalCode}
+                        {order.shippingAddress.postalCode},{" "}  
                       </p>
+                      <p> Phone No: {order.shippingAddress.phoneNumber}</p>
                        {
                         order.isDelivered ? (
                           <div className="bg-info p-2 col-12">
