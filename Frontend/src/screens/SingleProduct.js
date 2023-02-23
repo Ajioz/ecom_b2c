@@ -32,7 +32,7 @@ const SingleProduct = ({history,  match }) => {
  
   const detailProduct = useSelector((state) => state.detailProduct);
   const { loading, error, product } = detailProduct;
-  
+    
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -84,7 +84,7 @@ const SingleProduct = ({history,  match }) => {
               <div className="row">
                   <div className="col-md-6">
                     <div className="single-image">
-                      <img src={product?.image} alt={product?.name} />
+                      <img src={product.image?.url} alt={product?.name} />
                     </div>
                   </div>
                   <div className="col-md-6">
@@ -111,8 +111,7 @@ const SingleProduct = ({history,  match }) => {
                           <h6>Reviews</h6>
                           <Rating
                             value={product?.rating}
-                            text={
-                              `${product?.numberReview} review(s)`}
+                            text={`${product?.numberReview} ${product.numberReview > 1 ? "reviews" : "review"}`}
                           />
                         </div>
                         {/*  */}
@@ -213,8 +212,6 @@ const SingleProduct = ({history,  match }) => {
             </>
           )
         }
-
-
       </div>
     </>
   );

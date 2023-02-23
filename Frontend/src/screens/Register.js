@@ -11,7 +11,7 @@ const Register = ({location, history}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(0)
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const dispatch = useDispatch();
   const redirect = location.search ? location.search.split("=")[1]:"/"
@@ -55,7 +55,7 @@ const Register = ({location, history}) => {
             value={password} 
             onChange={(e) => setPassword(e.target.value)}/>
 
-          <input type="phoneNumber" 
+          <input type="text" 
             placeholder="Phone number" 
             value={phoneNumber} 
             onChange={(e) => setPhoneNumber(e.target.value)}/>

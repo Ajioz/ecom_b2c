@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/ProductModel.js';
-
+import cloudinary from '../utils/cloudinary.js';
 
 
 
@@ -124,6 +124,33 @@ export const createProduct = asyncHandler(async(req, res) => {
     } catch (error) {
         console.error(error);
         return res.status(400).json({message: "Something didn't go well with request"})
+    }
+});
+
+// Create Cloudinary Product
+export const createProductCloud = asyncHandler(async(req, res) => {
+    const { name, price, description, image, stock } = req.body;
+    try {
+        // Upload
+        if(image){
+            const cloudRes = await cloudinary.uploader.upload(image, {
+                upload_preset: "online-shop"
+            })
+            if(res){
+                await Product.create({
+                    name, 
+                    price, 
+                    description, 
+                    stock,
+                    image: cloudRes, 
+                    user: req.user._id,
+                });
+                return res.status(201).json({message: "Product added"})     
+            }
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({message: "Something didn't go well with request"})
     }
 });
 

@@ -34,7 +34,8 @@ export const Login = asyncHandler(async(req, res) => {
 // REGISTER Controller
 export const Register = asyncHandler(async(req, res) => {
     try {
-        const {name, email, phoneNumber, isAdmin,  } = req.body;
+        let {name, email, phoneNumber, isAdmin,  } = req.body;
+        phoneNumber = Number(phoneNumber);
         const userExist = await User.findOne( {email });
         if(userExist){
             return res.status(400).json({message: "User Already Exist!"})
@@ -54,6 +55,7 @@ export const Register = asyncHandler(async(req, res) => {
             })
         }
     } catch (error) {
+        console.error(error);
         return res.status(404).json({message: "Invalid email address"})
     }
 })

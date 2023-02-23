@@ -19,7 +19,7 @@ const CalltoActionSection = () => {
   const subHandler = async(e) => {
     e.preventDefault();
     try{
-      const { data } = await axios.post("/api/subscribers", {email});
+      const { data } = await axios.post(`${URL}/api/subscribers`, {email});
       if(data) {
         if(!toast.isActive(toastId.current)) toastId.current = toast.success("Subscription Successful", ToastParams)
       }

@@ -10,11 +10,11 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     type: 'OAuth2',
-    user:  process.env.EMAIL,
-    pass:  process.env.PASSWORD,
-    clientId:  process.env.OAUTH_CLIENTID,
-    clientSecret:  process.env.OAUTH_CLIENT_SECRET,
-    refreshToken:  process.env.OAUTH_REFRESH_TOKEN
+    user:  process.env.EMAIL2,
+    pass:  process.env.PASSWORD2,
+    clientId:  process.env.OAUTH_CLIENTID2,
+    clientSecret:  process.env.OAUTH_CLIENT_SECRET2,
+    refreshToken:  process.env.OAUTH_REFRESH_TOKEN2
   }
 });
 
@@ -36,6 +36,7 @@ export const  sendSingleEmail = asyncHandler(async(req, res) => {
     try {
         sendEmail(subject, email, message, (err, data) => {
             if(err){
+                console.error({err, msg: 'Internal Error'});
                 return res.status(500).json({err, message: 'Internal Error'});
             }else{
                return res.status(200).json({data, Message: 'Email Sent!!!'});

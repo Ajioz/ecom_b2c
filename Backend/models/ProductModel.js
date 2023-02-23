@@ -19,6 +19,8 @@ const reviewSchema = mongoose.Schema({
         required:true,
         ref:"User"
     }
+},{
+    timestamps:true
 });
 
 const productSchema = mongoose.Schema({
@@ -27,7 +29,7 @@ const productSchema = mongoose.Schema({
         required:true
     },
     image:{
-        type:String,
+        type:Object,
         required:true
     },
     description:{

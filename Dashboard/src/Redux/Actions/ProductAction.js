@@ -16,6 +16,7 @@ PRODUCT_LIST_REQUEST,
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_REQUEST,
 } from "../Constants/ProductConstants";
+import { URL } from "../url";
 import { logout } from "./userActions";
 
 
@@ -32,7 +33,7 @@ export const listProducts = () => async(dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             },
         };
-        const { data } = await axios.get(`http://localhost:5001/api/products/all`, config);
+        const { data } = await axios.get(`${URL}/api/products/all`, config);
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
 
     } catch (error) {
@@ -64,7 +65,7 @@ export const deleteProduct = (id) => async(dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             },
         };
-        await axios.delete(`http://localhost:5001/api/products/${id}`, config);
+        await axios.delete(`${URL}/api/products/${id}`, config);
         dispatch({ type: PRODUCT_DELETE_SUCCESS });
 
     } catch (error) {
@@ -97,7 +98,7 @@ export const createProduct = (name, price, description, image, stock) => async(d
                 Authorization: `Bearer ${userInfo.token}`
             },
         };
-        const {data} = await axios.post(`http://localhost:5001/api/products`, {name, price, description, image, stock}, config);
+        const {data} = await axios.post(`${URL}/api/products`, {name, price, description, image, stock}, config);
         dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
 
     } catch (error) {
@@ -119,7 +120,7 @@ export const createProduct = (name, price, description, image, stock) => async(d
 export const editProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_EDIT_REQUEST });
-    const { data } = await axios.get(`http://localhost:5001/api/products/${id}`);
+    const { data } = await axios.get(`${URL}/api/products/${id}`);
     dispatch({ type: PRODUCT_EDIT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -149,7 +150,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5001/api/products/${product._id}`,
+      `${URL}/api/products/${product._id}`,
       product,
       config
     );

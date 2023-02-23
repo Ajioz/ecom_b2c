@@ -1,5 +1,10 @@
 import React, { } from 'react';
-
+import collection_1 from '../slide/firstCollection.png'
+import collection_2 from '../slide/secondCollection.png'
+import collection_3 from '../slide/thirdCollection.png'
+import collection_4 from '../slide/fourthCollection.png'
+import collection_5 from '../slide/fifthCollection.png'
+import collection_6 from '../slide/sixthCollection.png'
 import {
   MDBCarousel,
   MDBCarouselItem,
@@ -7,41 +12,55 @@ import {
 
 
 export default function Carousel() {
-
-
   return (
- 
       <MDBCarousel showControls showIndicators>
         <MDBCarouselItem
           className='w-100 d-block'
           itemId={1}
-          src='https://mdbootstrap.com/img/new/slides/041.jpg'
-          alt='...'
-        >
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          src={collection_1}
+          alt='firstCollection'>
+          <h5>Classic Collections</h5>
         </MDBCarouselItem>
 
         <MDBCarouselItem
           className='w-100 d-block'
           itemId={2}
-          src='https://mdbootstrap.com/img/new/slides/042.jpg'
-          alt='...'
-        >
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          src={collection_2}
+          alt='secondCollection' >
+          <h5>Adorable</h5>
         </MDBCarouselItem>
 
         <MDBCarouselItem
           className='w-100 d-block'
           itemId={3}
-          src='https://mdbootstrap.com/img/new/slides/043.jpg'
-          alt='...'
-        >
-          <h5>Third slide label</h5>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          src={collection_3}
+          alt='thirdCollection' >
+          <h5 style={{color: "darkcyan"}}>Casual</h5>
         </MDBCarouselItem>
 
+        <MDBCarouselItem
+          className='w-100 d-block'
+          itemId={4}
+          src={collection_4}
+          alt='fouthCollection' >
+          <h5 style={{color: "darkcyan"}}>Aficana</h5>
+        </MDBCarouselItem>
+
+        <MDBCarouselItem
+          className='w-100 d-block'
+          itemId={5}
+          src={collection_5}
+          alt='fifthCollection' >
+          <h5>Sophisticated</h5>
+        </MDBCarouselItem>
+        
+        <MDBCarouselItem
+          className='w-100 d-block'
+          itemId={6}
+          src={collection_6}
+          alt='sixthCollection' >
+          <h5>Flexible</h5>
+        </MDBCarouselItem>
       </MDBCarousel>
   );
 }

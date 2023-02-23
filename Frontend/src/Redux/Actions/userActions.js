@@ -15,7 +15,7 @@ import {
 } from "../Constants/UserConstant";
 import axios from 'axios';
 import { ORDER_LIST_MY_RESET } from "../Constants/OrderConstants";
-
+import { URL } from "../url";
 
 
 // LOGIN
@@ -28,7 +28,7 @@ export const login = (email, password) => async(dispatch) => {
                 "Content-Type": "application/json",
             },
         };
-        const { data } = await axios.post(`/api/users/login`, { email, password}, config);
+        const { data } = await axios.post(`${URL}/api/users/login`, { email, password}, config);
 
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
         localStorage.setItem("userInfo", JSON.stringify(data));
@@ -67,7 +67,7 @@ export const signup = (name, email, password, phoneNumber ) => async(dispatch) =
                 "Content-Type": "application/json",
             },
         };
-        const { data } = await axios.post(`/api/users/signup`, { name, email, password, phoneNumber}, config);
+        const { data } = await axios.post(`${URL}/api/users/signup`, { name, email, password, phoneNumber}, config);
 
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
@@ -97,7 +97,7 @@ export const getUserDetails = () => async(dispatch, getState) => {
                 Authorization: `Bearer: ${userInfo.token}`,
             },
         };
-        const { data } = await axios.get(`/api/users/profile`, config);
+        const { data } = await axios.get(`${URL}/api/users/profile`, config);
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
 
     } catch (error) {
@@ -129,7 +129,7 @@ export const updateProfile = (user) => async(dispatch, getState) => {
                 Authorization: `Bearer: ${userInfo.token}`,
             },
         };
-        const { data } = await axios.put(`/api/users/profile`, user, config);
+        const { data } = await axios.put(`${URL}/api/users/profile`, user, config);
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
         localStorage.setItem("userInfo", JSON.stringify(data))

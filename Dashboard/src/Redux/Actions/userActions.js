@@ -10,6 +10,7 @@ import {
  } from "../Constants/UserConstant";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { URL } from "../url";
 
 
 // LOGIN
@@ -30,7 +31,7 @@ export const login = (email, password) => async(dispatch) => {
                 "Content-Type": "application/json",
             },
         };
-        const { data } = await axios.post(`http://localhost:5001/api/users/login`, { email, password}, config);
+        const { data } = await axios.post(`${URL}/api/users/login`, { email, password}, config);
         if(!data.isAdmin){
             toast.error("You are not Admin", ToastParams);
             dispatch({type: USER_LOGIN_FAIL})
@@ -80,7 +81,7 @@ export const listUsers = () => async(dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             },
         };
-        const { data } = await axios.get(`http://localhost:5001/api/users`, config);
+        const { data } = await axios.get(`${URL}/api/users`, config);
         dispatch({ type: USER_LIST_SUCCESS, payload: data });
 
 

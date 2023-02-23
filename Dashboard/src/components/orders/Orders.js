@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import moment from 'moment'
 
-const Orders = ({orders}) => {
+
+const Orders = ({ orders }) => {
+ 
   return (
     <table className="table">
       <thead>

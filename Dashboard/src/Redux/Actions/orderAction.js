@@ -5,12 +5,13 @@ import {
   ORDER_DETAIL_FAIL,
   ORDER_DETAIL_SUCCESS,
   ORDER_DETAIL_REQUEST,
-  ORDER_DELIVERED_RESET,
   ORDER_DELIVERED_REQUEST,
   ORDER_DELIVERED_FAIL,
+  ORDER_DELIVERED_SUCCESS,
 } from "../Constants/OrderConstants";
 import { logout } from "./userActions";
 import axios from "axios";
+import { URL } from "../url";
 
 
 //All Products
@@ -27,7 +28,7 @@ export const listOrders = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`http://localhost:5001/api/orders/all`, config);
+    const { data } = await axios.get(`${URL}/api/orders/all`, config);
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -55,7 +56,7 @@ export const getOrderDetail = (id) => async(dispatch, getState) => {
                 Authorization: `Bearer: ${userInfo.token}`,
             },
         };
-        const { data } = await axios.get(`http://localhost:5001/api/orders/${id}`, config);
+        const { data } = await axios.get(`${URL}/api/orders/${id}`, config);
         dispatch({ type: ORDER_DETAIL_SUCCESS, payload: data });
 
         localStorage.removeItem("cartItems");
@@ -74,16 +75,16 @@ export const getOrderDetail = (id) => async(dispatch, getState) => {
 // ORDER DELIVERED
 export const deliverOrder = (order) => async(dispatch, getState) => {
     try {
-        dispatch({ type: ORDER_DELIVERED_RESET })
+        dispatch({ type: ORDER_DELIVERED_REQUEST })
         const { userLogin: { userInfo} } = getState();
         const config = {
             headers:{
                 Authorization: `Bearer: ${userInfo.token}`,
             },
         };
-        const { data } = await axios.put(`http://localhost:5001/api/orders/${order._id}/delivered`, {}, config);
+        const { data } = await axios.put(`${URL}/api/orders/${order._id}/delivered`, {}, config);
         // console.log(data)
-        dispatch({ type: ORDER_DELIVERED_REQUEST, payload: data });
+        dispatch({ type: ORDER_DELIVERED_SUCCESS, payload: data });
 
         localStorage.removeItem("cartItems");
     }catch (error) {
