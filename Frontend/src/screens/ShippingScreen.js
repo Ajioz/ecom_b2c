@@ -21,11 +21,12 @@ const ShippingScreen = ({history}) => {
     let country;
     json.map((countryCode) => {
       for(let code in countryCode){
+          code += code
           dialCode = countryCode['dial_code'];
           country = countryCode['name']
         }
         codeList.push(dialCode);
-        countryList.push(country);
+        return countryList.push(country);
     });
     return {countryList, codeList};
   }

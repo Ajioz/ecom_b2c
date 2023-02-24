@@ -109,7 +109,7 @@ const OrderScreen = ({match}) => {
         sendSummary();
     }
 
-  }, [order, payLoading, shippingAddress.code, userInfo.token])
+  }, [order, orderId, payLoading, shippingAddress.code, userInfo.token])
   
   return (
     <>
