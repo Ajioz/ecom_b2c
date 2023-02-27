@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from 'axios';
 import Toast from '../LoadingError/Toast'
 import { toast } from "react-toastify";
+import { URL } from "../../Redux/url";
 
 
 const CalltoActionSection = () => {
-  
+
   const [email, setEmail] = useState(" ");
   const toastId = React.useRef(null);
 
@@ -29,8 +30,6 @@ const CalltoActionSection = () => {
     setEmail(" ");
   }
 
-
-  
 
   return (
     <>

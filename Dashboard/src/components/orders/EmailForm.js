@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";   
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { URL } from "../../Redux/url";
 
 function Email({ emailz }) {
 
@@ -32,7 +33,7 @@ function Email({ emailz }) {
           Authorization: `Bearer: ${userInfo.token}`,
         },
       };
-      const { data } = await axios.post(`http://localhost:5001/api/send/email`, {email, subject, message}, config);
+      const { data } = await axios.post(`${URL}/api/send/email`, {email, subject, message}, config);
       setLoading(false);
       toast.success(data.message);
         setEmail("");

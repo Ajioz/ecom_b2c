@@ -9,9 +9,9 @@ export const genReceipt = ( name, Address, city, postalCode,country, user ) => {
         product: {
             // Appears in header & footer of e-mails
             name: 'hubSandy Collection',
-            link: 'https://sandyhub.com/',
+            link: 'https://hubsandy.com/',
             // Optional logo
-            logo: 'https://th.bing.com/th/id/OIP.cGm_8n7kYZhI9yh8xo5cQgHaFj?pid=ImgDet&rs=1',
+            logo: 'https://asset.cloudinary.com/dn41vnrn0/1de1c8c202564cea4b86ff9e432405fc',
             logoHeight: '50px'
         }
     });

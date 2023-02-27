@@ -14,6 +14,7 @@ import {
   MDBModalFooter,
 } from 'mdb-react-ui-kit';
 import Email from "./EmailForm";
+import { URL } from "../../Redux/url";
 
 const Subscribers = () => {
 
@@ -36,7 +37,7 @@ const Subscribers = () => {
                 Authorization: `Bearer: ${userInfo.token}`,
             },
         };
-        const { data } = await axios.get('http://localhost:5001/api/subscribers', config);
+        const { data } = await axios.get(`${URL}/api/subscribers`, config);
         setSubscribers(data);
     }
     getSubscribers();

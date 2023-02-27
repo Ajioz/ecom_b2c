@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import { logout } from "../Redux/Actions/userActions";
 
+
 const Header = () => {
 
   const dispatch = useDispatch();
@@ -34,26 +35,36 @@ const Header = () => {
       <div className="Announcement" style={{background:'#0277bd'}}> 
         <div className="container">
           <div className="row">
+
+            {/* Quick Reach */}
             <div className="col-md-6 d-flex align-items-center display-none">
               <p>+234-907 095 3512</p>
               <p>info@hubsandy.com</p>
             </div>
+
+            {/* Social Media */}
             <div className=" col-12 col-lg-6 justify-content-center justify-content-lg-end d-flex align-items-center">
-              <Link to="">
+              <a href="https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL" target="_blank"  rel="noreferrer">
                 <i className="fab fa-facebook-f"></i>
-              </Link>
-              <Link to="">
+              </a>
+              <a href="https://instagram.com/hubsandy?igshid=ZDdkNTZiNTM=" target="_blank"  rel="noreferrer">
                 <i className="fab fa-instagram"></i>
-              </Link>
-              <Link to="">
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL" target="_blank"  rel="noreferrer">
                 <i className="fab fa-linkedin-in"></i>
-              </Link>
-              <Link to="">
+              </a> 
+              <a href="whatsapp://send?text=Hi hubSandy, I'd love to order some product, I thought of reaching out first!&phone=+2349070953512" target="_blank" rel="noreferrer"><i className="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL" target="_blank"  rel="noreferrer">
                 <i className="fab fa-youtube"></i>
-              </Link>
-              <Link to="">
-                <i className="fab fa-pinterest-p"></i>
-              </Link>
+              </a>
+              {
+                userInfo.isAdmin && (
+                  <a href="http://localhost:4000" target="_blank"  rel="noreferrer">
+                    <button type="button"  class="btn btn-outline-info">Admin</button>
+                  </a>
+                )
+              }
             </div>
           </div>
         </div>
@@ -120,10 +131,10 @@ const Header = () => {
                         </div>
                     )
                   }
-                  <Link to="/cart" className="cart-mobile-icon">
+                  <a href="/cart" className="cart-mobile-icon">
                     <i className="fas fa-shopping-bag"></i>
                     <span className="badge">{cartItems.length}</span>
-                  </Link>
+                  </a>
                 </div>
                 <div className="col-12 d-flex align-items-center">
                   <form onSubmit={submitHandler}  className="input-group">
@@ -187,16 +198,16 @@ const Header = () => {
                       </div>
                     ) : (
                       <>
-                        <Link to="/register"> Register </Link>
-                        <Link to="/login"> Login </Link>
+                        <a href="/register"> Register </a>
+                        <a href="/login"> Login </a>
                       </>
                     )
                   }
 
-                <Link to="/cart">
+                <a href="/cart">
                   <i className="fas fa-shopping-bag"></i>
                   <span className="badge">{cartItems.length}</span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

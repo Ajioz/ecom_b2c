@@ -1,6 +1,7 @@
 import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
+
 export default function Footer() {
   return (
     <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' >
@@ -10,21 +11,23 @@ export default function Footer() {
         </div>
 
         <div>
-          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank"  rel="noreferrer">
+          <a href='https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL' className='me-4 text-reset' target="_blank"  rel="noreferrer">
             <MDBIcon fab icon="facebook-f" />
           </a>
-          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank" rel="noreferrer">
-            <MDBIcon fab icon="twitter" />
-          </a>
-          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank" rel="noreferrer">
-            <MDBIcon fab icon="google" />
-          </a>
-          <a href='https://facebook.com/hubsandy-collection' className='me-4 text-reset' target="_blank" rel="noreferrer" >
+          <a href='https://instagram.com/hubsandy?igshid=ZDdkNTZiNTM=' className='me-4 text-reset' target="_blank" rel="noreferrer" >
             <MDBIcon fab icon="instagram" />
           </a>
           <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="linkedin" />
           </a>
+          <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
+            <MDBIcon fab icon="whatsapp" />
+          </a>
+          <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
+            <MDBIcon fab icon="youtube" />
+          </a>
+       
+        
         </div>
       </section>
 
@@ -99,12 +102,8 @@ export default function Footer() {
                 <MDBIcon icon="envelope" className="me-3" />
                 info@hubsandy.com
               </p>
-              <p>
-                <MDBIcon icon="phone" className="me-3" /> +234-907 095 3512
-              </p>
-              <p>
-                <MDBIcon icon="print" className="me-3" /> 907 095 3512
-              </p>
+              <p><MDBIcon icon="phone" className="me-3" /> +234-907 095 3512</p>
+              <p><MDBIcon icon="phone" className="me-3" /> +234-806 410 7055</p>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
