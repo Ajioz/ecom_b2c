@@ -60,7 +60,7 @@ const Header = () => {
               </a>
               {
                 userInfo?.isAdmin && (
-                  <a href="http://localhost:4000" target="_blank"  rel="noreferrer">
+                  <a href="https://sandyboard.netlify.app/" target="_blank"  rel="noreferrer">
                     <button type="button"  class="btn btn-outline-info">Admin</button>
                   </a>
                 )
