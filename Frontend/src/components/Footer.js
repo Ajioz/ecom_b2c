@@ -20,10 +20,10 @@ export default function Footer() {
           <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="linkedin" />
           </a>
-          <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
+          <a href="whatsapp://send?text=Hi hubSandy, I'd love to order some product, I thought of reaching out first!&phone=+2349070953512" className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="whatsapp" />
           </a>
-          <a href='https://linkedin.com/in/hubsandy' className='me-4 text-reset' target="_blank" rel="noreferrer">
+          <a href='https://www.youtube.com/@sandyhub-Collections' className='me-4 text-reset' target="_blank" rel="noreferrer">
             <MDBIcon fab icon="youtube" />
           </a>
        

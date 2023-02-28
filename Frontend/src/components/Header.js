@@ -55,11 +55,11 @@ const Header = () => {
               </a> 
               <a href="whatsapp://send?text=Hi hubSandy, I'd love to order some product, I thought of reaching out first!&phone=+2349070953512" target="_blank" rel="noreferrer"><i className="fab fa-whatsapp"></i>
               </a>
-              <a href="https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL" target="_blank"  rel="noreferrer">
+              <a href="https://www.youtube.com/@sandyhub-Collections" target="_blank"  rel="noreferrer">
                 <i className="fab fa-youtube"></i>
               </a>
               {
-                userInfo.isAdmin && (
+                userInfo?.isAdmin && (
                   <a href="http://localhost:4000" target="_blank"  rel="noreferrer">
                     <button type="button"  class="btn btn-outline-info">Admin</button>
                   </a>

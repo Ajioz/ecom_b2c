@@ -6,7 +6,6 @@ import { URL } from "../../Redux/url";
 
 
 const CalltoActionSection = () => {
-
   const [email, setEmail] = useState(" ");
   const toastId = React.useRef(null);
 
