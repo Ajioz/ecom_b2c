@@ -8,6 +8,7 @@ import {
     editProduct,
     getAllProductAdmin,
     getAllProducts, 
+    getCountry, 
     getOneProduct,
     productReview,
 } from '../controllers/productController.js';
@@ -30,6 +31,9 @@ productRoute.route('/:id').get(getOneProduct).put(protect, Admin, editProduct).d
 
 // PRODUCT REVIEW 
 productRoute.post('/:id/review', protect, productReview);
+
+// GET COUNTRY 
+productRoute.post('/country', protect, getCountry);
 
 
 export default productRoute;

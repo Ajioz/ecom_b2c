@@ -14,15 +14,17 @@ const transporter = nodemailer.createTransport({
     pass:  process.env.PASSWORD2,
     clientId:  process.env.OAUTH_CLIENTID2,
     clientSecret:  process.env.OAUTH_CLIENT_SECRET2,
-    refreshToken:  process.env.OAUTH_REFRESH_TOKEN2
+    refreshToken:  process.env.OAUTH_REFRESH_TOKEN2,
   }
 });
 
 
-//Send Single Mail mail method
+/*
+    01  Send Single Mail mail method
+*/
 const sendEmail = (subject, email, message, cb) => {
     const mailOptions  = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL2,
         to: email,
         subject,
         text: message
@@ -50,10 +52,12 @@ export const  sendSingleEmail = asyncHandler(async(req, res) => {
 })
 
 
-//Send Multiple Mail method
+/*
+    02  Send Multiple Mail method
+*/
 const sendMultiMail = (subject, emailList, message, cb) => {
     const mailOptions  = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL2,
         to: emailList,
         subject,
         text: message
@@ -74,7 +78,7 @@ const mailList = (subscribers) => {
     return mailList;
 }
 
-//   Send Multiple Emails controller
+
 export const  sendEmails = asyncHandler(async(req, res) => {
     const { subject, message } = req.body;
     try {
@@ -93,12 +97,15 @@ export const  sendEmails = asyncHandler(async(req, res) => {
     }
 });
 
-// Send Order Summary
 
-//Send Single Mail mail method
+/*
+   03  Send Order Summary
+   Send Single Mail mail method
+*/  
+
 const sendOrder = (subject, email, emailBody, cb) => {
     const mailOptions  = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL2,
         to: ["sandiewhyte5@gmail.com", email],
         subject,
         html: emailBody
@@ -113,6 +120,7 @@ export const  sendOrderSummary  = asyncHandler(async(req, res) => {
     try {
         sendOrder(subject, email, emailBody, (err, data) => {
             if(err){
+                console.error({err, msg: 'Internal Error'});
                 return res.status(500).json({err, message: 'Internal Error'});
             }else{
                return res.status(200).json({data, Message: 'Email Sent!!!'});
@@ -121,5 +129,39 @@ export const  sendOrderSummary  = asyncHandler(async(req, res) => {
     } catch (error) {
         console.error(error, "failed");
         return res.status(400).json({Message: "We couldn't process your request"})
+    }
+})
+
+
+/*
+    04 Contact form
+    Send contact form to mail(s) method
+*/
+const contact = (name, email, message, isCheckecd, cb) => {
+    const mailOptions  = {
+        from: process.env.EMAIL2,
+        to: isCheckecd ? [process.env.EMAIL2, email] : process.env.EMAIL2,
+        subject: name,
+        text: message.concat(`\n ${email}`)
+    };
+    transporter.sendMail(mailOptions , cb);
+}
+
+// Send Single Email controller
+export const  sendContactEmail = asyncHandler(async(req, res) => {
+    const { email, name, message, isChecked } = req.body;
+    // console.log(req.body);
+    try {
+        contact(name, email, message, isChecked, (err, data) => {
+            if(err){
+                console.error({err, msg: 'Internal Error'});
+                return res.status(500).json({err, message: 'Internal Error'});
+            }else{
+               return res.status(200).json({data, Message: 'Email Sent!!!'});
+            }
+         });
+    } catch (error) {
+        console.error(error, "failed...");
+        return res.status(400).json({Message: "We couldn't process your request"});
     }
 })

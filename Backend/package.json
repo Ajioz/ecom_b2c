@@ -32,7 +32,7 @@
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
   },
-   "engines":{
+  "engines": {
     "node": "14.x"
   }
 }

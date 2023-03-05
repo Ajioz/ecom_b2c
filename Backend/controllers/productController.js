@@ -1,6 +1,10 @@
+import dotenv from 'dotenv'
+dotenv.config();
 import asyncHandler from 'express-async-handler'
 import Product from '../models/ProductModel.js';
 import cloudinary from '../utils/cloudinary.js';
+import { currencies } from '../utils/currencies.js';
+import fetch, {Headers} from 'node-fetch';
 
 
 
@@ -173,3 +177,30 @@ export const editProduct = asyncHandler(async(req, res) => {
         return res.status(400).json({message: "Something didn't go well with request"})
     }
 });
+
+// Get Country of visitor
+export const getCountry = asyncHandler(async(req, res) => {
+    let{ country } = req.body;
+    let getCountry;  let getCode;  let codeList = [];
+    currencies.map((currency) => {
+        for(let code in currency){
+            getCountry = currency['country'];
+            getCode = currency['currency_code'];
+        }
+        if(getCountry === country) return codeList.push(getCode);
+    })
+    console.log(codeList[0]);
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            "apikey": process.env.EXCHANGE_RATE,
+        }
+    };
+    fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${codeList[0]}&from=usd&amount=1`, requestOptions)
+    .then(response => response.json())
+    .then((result) => {
+        return res.status(200).json(result);
+    })
+    .catch(error => console.log({msg: "Poor network"}));
+})

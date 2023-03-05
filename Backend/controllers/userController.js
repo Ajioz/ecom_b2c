@@ -10,12 +10,12 @@ export const Login = asyncHandler(async(req, res) => {
         const user = await User.findOne({ email });
         const data = { _id: user._id, isAdmin: user.isAdmin   }
         const token = generateToken(data);
-
         if(user && (await user.matchPassword(password))){
             return res.json({
                 _id: user._id,
                 name: user.name,
                 email: user.email,
+                country: user.country,
                 isAdmin: user.isAdmin,
                 token,
                 number: user.phoneNumber,
@@ -34,7 +34,7 @@ export const Login = asyncHandler(async(req, res) => {
 // REGISTER Controller
 export const Register = asyncHandler(async(req, res) => {
     try {
-        let {name, email, phoneNumber, isAdmin,  } = req.body;
+        let {name, email, phoneNumber, country, isAdmin,  } = req.body;
         phoneNumber = Number(phoneNumber);
         const userExist = await User.findOne( {email });
         if(userExist){
@@ -49,6 +49,7 @@ export const Register = asyncHandler(async(req, res) => {
                 name,
                 email,
                 phoneNumber,
+                country,
                 isAdmin,
                 token,
                 message: "User saved successfully!"
@@ -64,9 +65,9 @@ export const Register = asyncHandler(async(req, res) => {
 // PROFILE
 export const Profile = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id);
-    const { _id, name, email, phoneNumber, isAdmin, createdAt } = user;
+    const { _id, name, email, phoneNumber, country, isAdmin, createdAt } = user;
     try {
-        if(user) return res.status(200).json({_id, name, email, phoneNumber, isAdmin, createdAt })
+        if(user) return res.status(200).json({_id, name, email, phoneNumber, country, isAdmin, createdAt })
         else return res.status(404).json({message: "User not found"})
     } catch (error) {
         return res.status(404).json({message: "User error"})
@@ -84,8 +85,8 @@ export const updateProfile = asyncHandler(async(req, res) => {
             user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
             if(req.body.password) user.password = req.body.password;
             const updateUser = await user.save();
-            const { _id, name, email, phoneNumber, isAdmin, createdAt } = updateUser;
-            return res.status(201).json({ _id, name, email, phoneNumber, isAdmin, createdAt})
+            const { _id, name, email, phoneNumber, country, isAdmin, createdAt } = updateUser;
+            return res.status(201).json({ _id, name, email, phoneNumber, country, isAdmin, createdAt})
         }else{
             return res.status(404).json({message: "User not found"})
         }
