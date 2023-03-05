@@ -35,6 +35,7 @@ export const Contact = () => {
                         id="name4" 
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                     />
                 </div>
 
@@ -47,6 +48,7 @@ export const Contact = () => {
                         className="form-control" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                         />
                 </div>
 
@@ -58,6 +60,7 @@ export const Contact = () => {
                         className="form-control"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        required
                     ></textarea>
                 </div>
 
