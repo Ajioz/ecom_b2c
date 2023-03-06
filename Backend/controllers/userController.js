@@ -57,7 +57,7 @@ export const Register = asyncHandler(async(req, res) => {
         }
     } catch (error) {
         console.error(error);
-        return res.status(404).json({message: "Invalid email address"})
+        return res.status(404).json({message: "Invalid email address, try again!"})
     }
 })
 
