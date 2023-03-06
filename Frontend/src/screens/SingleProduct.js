@@ -12,10 +12,13 @@ import { createProductReview, ProductDetails } from "../Redux/Actions/ProductAct
 import { PRODUCT_CREATE_REVIEW_RESET } from "../Redux/Constants/ProductConstants";
 
 const SingleProduct = ({history,  match }) => {
-
+  
+  let getDetails = JSON.parse(localStorage.getItem("Country")) || {};
+  
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState(" ");
+
 
   const toastId = React.useRef(null);
 
@@ -29,6 +32,7 @@ const SingleProduct = ({history,  match }) => {
 
   const dispatch = useDispatch();
   const productId = match.params.id;
+
  
   const detailProduct = useSelector((state) => state.detailProduct);
   const { loading, error, product } = detailProduct;
@@ -98,6 +102,7 @@ const SingleProduct = ({history,  match }) => {
                         <div className="flex-box d-flex justify-content-between align-items-center">
                           <h6>Price</h6>
                           <span>${product?.price}</span>
+                          <span style={{color: "gray", fontFamily:"monospace"}}>{getDetails?.code} {product.price * getDetails?.rate?.toFixed(1)} </span>
                         </div>
                         <div className="flex-box d-flex justify-content-between align-items-center">
                           <h6>Status</h6>

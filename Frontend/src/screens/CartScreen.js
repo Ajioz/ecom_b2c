@@ -6,6 +6,9 @@ import { addToCart, removeFromCart } from "../Redux/Actions/cartAction";
 
 const CartScreen = ({match, location, history}) => {
   window.scrollTo(0, 0);
+
+  let getDetails = JSON.parse(localStorage.getItem("Country")) || {};
+
   const dispatch = useDispatch();
   const productId = match.params.id;
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
@@ -83,6 +86,7 @@ const CartScreen = ({match, location, history}) => {
                       <div className="cart-price mt-3 mt-md-0 col-md-2 align-items-sm-end align-items-start  d-flex flex-column justify-content-center col-sm-7">
                         <h6>PRICE</h6>
                         <h4>${item.price}</h4>
+                        <h5 style={{color: "gray", fontFamily:"monospace"}}>{getDetails?.code} {item.price * getDetails?.rate?.toFixed(1)} </h5>
                       </div>
                    </div>
                 ))
@@ -90,8 +94,11 @@ const CartScreen = ({match, location, history}) => {
               {/* End of cartItems */}
               
               <div className="total">
-                <span className="sub">total:</span>
-                <span className="total-price">${totalPrice}</span>
+                <span className="sub">total</span>
+                <h5 className="total-price">USD {totalPrice}</h5>
+                <h5 className="total-price" style={{color: "gray", fontFamily:"monospace", fontWeight:'200'}}>
+                  {getDetails?.code} {totalPrice * getDetails?.rate?.toFixed(2)}
+                </h5>
               </div>
               <hr />
               <div className="cart-buttons d-flex align-items-center row">

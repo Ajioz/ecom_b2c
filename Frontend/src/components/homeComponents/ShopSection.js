@@ -57,7 +57,6 @@ const ShopSection = (props) => {
                   },
                 };
               let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo.country}, config);
-              console.log(data)
               let date = data.date;
               let month = Number(date.split('-')[1]);
               let rate = data.info.rate;
@@ -117,7 +116,7 @@ const ShopSection = (props) => {
                                     <>
                                       {
                                          details?.rate ? (
-                                           <cite><h6 style={{color: "gray"}}>{details?.code} {product.price * details?.rate?.toFixed(1)} </h6></cite>
+                                           <><h6 style={{color: "gray", fontFamily:"monospace"}}>{details?.code} {product.price * details?.rate?.toFixed(1)} </h6></>
                                          ) : (
                                             <cite><h6 style={{color: "gray"}}>calc...</h6></cite>
                                          )

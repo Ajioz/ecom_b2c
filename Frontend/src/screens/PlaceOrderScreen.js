@@ -11,12 +11,12 @@ const PlaceOrderScreen = ({history}) => {
   window.scrollTo(0, 0);
 
   const dispatch = useDispatch();
+  let getDetails = JSON.parse(localStorage.getItem("Country")) || {};
 
   const cart = useSelector(state => state.cart)
 
   const { 
     shippingAddress: { address, city, country, postalCode, phoneNumber}, 
-    cartItems: [{ qty }],
     paymentMethod, 
   } = cart;
 
@@ -142,7 +142,7 @@ const PlaceOrderScreen = ({history}) => {
                       </div>
                       <div className="mt-3 mt-md-0 col-md-2 col-6 align-items-end  d-flex flex-column justify-content-center ">
                         <h4>SUBTOTAL</h4>
-                        <h6>${item.price*qty}</h6>
+                        <h6>${item.price * item.qty}</h6>
                       </div>
                     </div> 
                   ))             
@@ -152,7 +152,7 @@ const PlaceOrderScreen = ({history}) => {
           }
           </div>
           {/* total */}
-          <div className="col-lg-3 d-flex align-items-end flex-column mt-5 subtotal-order">
+          <div className="col-lg-4 d-flex align-items-end flex-column mt-5 subtotal-order">
             <table className="table table-bordered">
               <tbody>
                 <tr>
@@ -160,24 +160,28 @@ const PlaceOrderScreen = ({history}) => {
                     <strong>Products</strong>
                   </td>
                   <td>${cart.itemsPrice}</td>
+                  <td>{getDetails.code} {cart.itemsPrice * getDetails.rate.toFixed(1)}</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Shipping</strong>
                   </td>
                   <td>${cart.shippingPrice}</td>
+                  <td>{getDetails.code} {cart.shippingPrice * getDetails.rate.toFixed(1)}</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Tax</strong>
                   </td>
                   <td>${cart.taxPrice}</td>
+                  <td>{getDetails.code} {cart.taxPrice * getDetails.rate.toFixed(1)}</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Total</strong>
                   </td>
                   <td>${cart.totalPrice}</td>
+                  <td>{getDetails.code} {cart.totalPrice * getDetails.rate.toFixed(1)}</td>
                 </tr>
               </tbody>
             </table>
