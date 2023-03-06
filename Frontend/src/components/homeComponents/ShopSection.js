@@ -56,6 +56,7 @@ const ShopSection = (props) => {
                   },
                 };
               let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo.country}, config);
+              console.log(data)
               let date = data.date;
               let month = Number(date.split('-')[1]);
               let rate = data.info.rate;
