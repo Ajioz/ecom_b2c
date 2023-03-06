@@ -200,7 +200,8 @@ export const getCountry = asyncHandler(async(req, res) => {
     fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${codeList[0]}&from=usd&amount=1`, requestOptions)
     .then(response => response.json())
     .then((result) => {
-        return res.status(200).json(result);
+        const codeRate = { ...result, code: codeList[0] };
+        return res.status(200).json(codeRate);
     })
     .catch(error => console.log({msg: "Poor network"}));
 })

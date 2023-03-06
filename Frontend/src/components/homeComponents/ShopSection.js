@@ -39,7 +39,8 @@ const ShopSection = (props) => {
             let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo.country}, config);
             let month = Number(data.date.split('-')[1]);
             let rate = data.info.rate;
-            const country = { month, rate }
+            let code = data.code;
+            const country = { month, rate, code }
             if(countryRate !== country.rate){
                 localStorage.setItem("Country", JSON.stringify(country));
                 setDetails(country)
@@ -60,7 +61,8 @@ const ShopSection = (props) => {
               let date = data.date;
               let month = Number(date.split('-')[1]);
               let rate = data.info.rate;
-              const country = { month, rate };
+              let code = data.code;
+              const country = { month, rate, code };
               localStorage.setItem("Country", JSON.stringify(country));
               setDetails(country);
             }
@@ -115,9 +117,9 @@ const ShopSection = (props) => {
                                     <>
                                       {
                                          details?.rate ? (
-                                           <cite><h6 style={{color: "gray"}}>Appx: N{product.price * details?.rate?.toFixed(1)} </h6></cite>
+                                           <cite><h6 style={{color: "gray"}}>{details?.code} {product.price * details?.rate?.toFixed(1)} </h6></cite>
                                          ) : (
-                                            <cite><h6 style={{color: "gray"}}>Appx: calc... </h6></cite>
+                                            <cite><h6 style={{color: "gray"}}>calc...</h6></cite>
                                          )
                                       }
                                     </>

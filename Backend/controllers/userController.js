@@ -52,7 +52,7 @@ export const Register = asyncHandler(async(req, res) => {
                 country,
                 isAdmin,
                 token,
-                message: "User saved successfully!"
+                message: "User saved successfully!",
             })
         }
     } catch (error) {
