@@ -160,28 +160,28 @@ const PlaceOrderScreen = ({history}) => {
                     <strong>Products</strong>
                   </td>
                   <td>${cart.itemsPrice}</td>
-                  <td>{getDetails.code} {cart.itemsPrice * getDetails.rate.toFixed(1)}</td>
+                  <td>{getDetails.code} {cart.itemsPrice * getDetails.rate.toFixed(0)}</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Shipping</strong>
                   </td>
                   <td>${cart.shippingPrice}</td>
-                  <td>{getDetails.code} {cart.shippingPrice * getDetails.rate.toFixed(1)}</td>
+                  <td>{getDetails.code} {cart.shippingPrice * getDetails.rate.toFixed(0)}</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Tax</strong>
                   </td>
                   <td>${cart.taxPrice}</td>
-                  <td>{getDetails.code} {cart.taxPrice * getDetails.rate.toFixed(1)}</td>
+                  <td>{getDetails.code} {cart.taxPrice * getDetails.rate.toFixed(0)}</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Total</strong>
                   </td>
                   <td>${cart.totalPrice}</td>
-                  <td>{getDetails.code} {cart.totalPrice * getDetails.rate.toFixed(1)}</td>
+                  <td>{getDetails.code} {cart.totalPrice * getDetails.rate.toFixed(0)}</td>
                 </tr>
               </tbody>
             </table>
