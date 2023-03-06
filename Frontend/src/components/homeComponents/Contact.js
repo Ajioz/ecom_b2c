@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from "axios";
 import { URL } from "../../Redux/url";
-export const Contact = () => {
 
+
+export const Contact = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");

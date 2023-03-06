@@ -26,7 +26,7 @@ export const Login = asyncHandler(async(req, res) => {
             return res.status(404).json({message: "Invalid Email or Password"})
         }
     } catch (error) {
-        return res.status(404).json({message: "Invalid Email or Password"})
+        return res.status(404).json({message: "Network Error, check your internet connection"})
     }
 })
 
