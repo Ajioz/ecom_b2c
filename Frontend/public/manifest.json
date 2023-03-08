@@ -1,6 +1,6 @@
 {
-  "short_name": "ShoeShop",
-  "name": "ShoeShop E-commerce",
+  "short_name": "hubSandy",
+  "name": "hubSandy Collections",
   "icons": [
     {
       "src": "favicon.png",
@@ -15,11 +15,60 @@
     {
       "src": "favicon.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "256x256",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
+  "shortcuts": [
+  {
+    "name": "Home",
+    "url": "/",
+    "description": "Product Collection"
+  },
+  {
+    "name": "Register",
+    "url": "/register",
+    "description": "Create Account"
+  }
+],
+  "screenshots" : [
+  {
+    "src": "smallScreen.jpg",
+    "sizes": "360x780",
+    "type": "image/jpg",
+    "platform": "small"
+  },
+  {
+    "src": "mediumScreen.jpg",
+    "sizes": "820x1180",
+    "type": "image/jpg",
+    "platform": "medium"
+  },
+  {
+    "src": "largeScreen.jpg",
+    "sizes": "1280x800",
+    "type": "image/jpg",
+    "platform": "wide"
+  }
+],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#56b0e3",
+  "background_color": "#ffffff",
+  "categories": ["shopping", "finance", "navigation" ],
+  "description": "An e-commerce app for classical products. A customer-first approach, that can deliver product globally.",
+  "dir": "auto",
+  "lang": "en",
+  "orientation": "any"
 }
