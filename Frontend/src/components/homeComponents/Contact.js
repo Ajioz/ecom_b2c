@@ -74,7 +74,7 @@ export const Contact = () => {
                         value={isChecked}
                         onChange={(e) => setIsChecked(!isChecked)}
                     />
-                    <label className="form-check-label" for="checkbox4">Send me a copy of this message</label>
+                    <label className="form-check-label" htmlFor="checkbox4">Send me a copy of this message</label>
                 </div>
 
                 {/* <!-- Submit button --> */}

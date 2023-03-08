@@ -1,10 +1,10 @@
 import React, { } from 'react';
-import collection_1 from '../slide/firstCollection.png'
-import collection_2 from '../slide/secondCollection.png'
-import collection_3 from '../slide/thirdCollection.png'
-import collection_4 from '../slide/fourthCollection.png'
-import collection_5 from '../slide/fifthCollection.png'
-import collection_6 from '../slide/sixthCollection.png'
+import collection_1 from '../slide/firstCollection.webp'
+import collection_2 from '../slide/secondCollection.webp'
+import collection_3 from '../slide/thirdCollection.webp'
+import collection_4 from '../slide/fourthCollection.webp'
+import collection_5 from '../slide/fifthCollection.webp'
+import collection_6 from '../slide/sixthCollection.webp'
 import {
   MDBCarousel,
   MDBCarouselItem,
