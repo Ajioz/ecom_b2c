@@ -1,20 +1,16 @@
 const CACHE_NAME = 'hubsandy-v1';
+let version = "v2.0.4";
 
 // Add whichever assets you want to pre-cache here:
 const PRECACHE_ASSETS = ['/public/',  '/src/' ]
-// const PRECACHE_ASSETS = [ 'index.html' ];
+let swPath;
+let urlObject = new URL(location);
+let host;
 
 /*
     Install SW
     // Listener for the install event - pre-caches our assets list on service worker install.
 */
-// self.addEventListener('install', (event) => {
-//     event.waitUntil((async () => {
-//         const cache = await caches.open(CACHE_NAME);
-//         return cache.addAll(PRECACHE_ASSETS);
-//     })());
-// });
-
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -29,11 +25,6 @@ self.addEventListener('install', (event) => {
 /*
     Activate the SW
 */
-// self.addEventListener('activate', event => {
-//   event.waitUntil(clients.claim());
-// });
-
-
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [];
     cacheWhitelist.push(CACHE_NAME);
@@ -54,31 +45,31 @@ self.addEventListener('activate', (event) => {
 /*
     Listen for requests - Fetch
 */
-// self.addEventListener('fetch', event => {
-//   event.respondWith(async () => {
-//       const cache = await caches.open(CACHE_NAME);
-
-//       // match the request to our cache
-//       const cachedResponse = await cache.match(event.request);
-
-//       // check if we got a valid response
-//       if (cachedResponse !== undefined) {
-//           // Cache hit, return the resource
-//           return cachedResponse;
-//       } else {
-//         // Otherwise, go to the network
-//           return fetch(event.request)
-//       };
-//   });
-// });
-
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then(() => {
                 return fetch(event.request) 
-                    .catch(() => caches.match('offline.html'))
+                    .catch(() => caches.match(PRECACHE_ASSETS))
             })
     )
 });
 
+
+
+if (urlObject.searchParams.get("swPath")) {
+    swPath = urlObject.searchParams.get("swPath");
+}else {
+    if (urlObject.searchParams.get("version")) {
+        version = urlObject.searchParams.get("version");
+    }
+    if (urlObject.searchParams.get("swJSHost")) {
+        host = "https://" + urlObject.searchParams.get("swJSHost");
+    }
+    else {
+        host = "https://sdki.truepush.com/sdk/";
+    }
+    swPath = host + version + "/sw.js";
+}
+
+importScripts(swPath);
