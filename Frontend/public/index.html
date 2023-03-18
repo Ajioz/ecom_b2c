@@ -35,57 +35,6 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-     <script>
-        if('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                  .then((reg) => console.log('Success: ', reg.scope))
-                  .catch((err) => console.log('Failure: ', err));
-            })
-        }
-    </script>
-    
-    <script type="application/javascript" src="https://sdki.truepush.com/sdk/v2.0.4/app.js" async></script>
-    <script>
-        var truepush = window.truepush || [];
-        truepush.push(function(){
-          truepush.Init({
-            id: "6408f7aca2165b2544c4f36b"
-          },
-            function(error){
-            if(error) console.log(error);
-    })
-        })
-    </script>
-    <script>
-        truepush.push({
-        operation: "add-tags",
-        data: [{ tagName: "YOUR_TAG_NAME", tagType: "TAG_DATATYPE", tagValue: "YOUR_TAG_VALUE" }],
-        callback: function(error,response){
-            console.log(error,response);
-            }
-        })
-    </script>
-
-    <script>
-        truepush.push({
-        operation: "remove-tags",
-        data: [{ tagName: "YOUR_TAG_NAME", tagValue: "YOUR_TAG_VALUE_TO_BE_REMOVED" }],
-        callback: function(error,response){
-            console.log(error,response);
-        }
-        })
-    </script>
-
-    <script>
-        truepush.push({
-          operation: "get-tags",
-          callback: function(error,response){
-          console.log(error,response);
-        }
-      })
-    </script>
-    
+    <div id="root"></div>   
   </body>
 </html>

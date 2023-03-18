@@ -45,18 +45,18 @@ const Header = () => {
             {/* Social Media */}
             <div className=" col-12 col-lg-6 justify-content-center justify-content-lg-end d-flex align-items-center">
               <a href="https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL" target="_blank"  rel="noreferrer">
-                <i className="fab fa-facebook-f"></i>
+                <i className="fab fa-facebook-f" alt="fb"></i>
               </a>
               <a href="https://instagram.com/hubsandy?igshid=ZDdkNTZiNTM=" target="_blank"  rel="noreferrer">
-                <i className="fab fa-instagram"></i>
+                <i className="fab fa-instagram" alt="ist"></i>
               </a>
               <a href="https://www.facebook.com/profile.php?id=100090154294939&mibextid=ZbWKwL" target="_blank"  rel="noreferrer">
-                <i className="fab fa-linkedin-in"></i>
+                <i className="fab fa-linkedin-in" alt="in"></i>
               </a> 
-              <a href="whatsapp://send?text=Hi hubSandy, I'd love to order some product, I thought of reaching out first!&phone=+2349070953512" target="_blank" rel="noreferrer"><i className="fab fa-whatsapp"></i>
+              <a href="whatsapp://send?text=Hi hubSandy, I'd love to order some product, I thought of reaching out first!&phone=+2349070953512" target="_blank" rel="noreferrer"><i className="fab fa-whatsapp" alt="wa"></i>
               </a>
               <a href="https://www.youtube.com/@sandyhub-Collections" target="_blank"  rel="noreferrer">
-                <i className="fab fa-youtube"></i>
+                <i className="fab fa-youtube" alt="yt"></i>
               </a>
               {
                 userInfo?.isAdmin && (
