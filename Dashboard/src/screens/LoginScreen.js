@@ -6,9 +6,6 @@ import Message from "./../components/LoadingError/Error"
 import Toast from "../components/LoadingError/Toast";
 
 
-
-
-
 const Login = ({history}) => {
   window.scrollTo(0, 0);
   const [email, setEmail] = useState("")
@@ -21,10 +18,13 @@ const Login = ({history}) => {
   const { loading, userInfo , error } = userLogin;
 
   useEffect(() => {
-    if(userInfo){
-      history.push("/")
+    let isMounted = true;
+    if(isMounted){
+      if(userInfo){
+        history.push("/")
+      }
     }
-  
+    return () => isMounted = false;
   }, [userInfo, history])
   
   const handleSubmit = (e) => {

@@ -12,7 +12,8 @@ import { ORDER_PAY_RESET } from "../Redux/Constants/OrderConstants";
 import { URL } from "../Redux/url";
 
 
-const OrderScreen = ({match}) => {
+const OrderScreen = ({ match }) => {
+
   window.scrollTo(0, 0);
   const [payLoading, setPayLoading] = useState(false)
   const [sdkReady, setSdkReady] = useState(false);
@@ -43,29 +44,32 @@ const OrderScreen = ({match}) => {
   }
 
   useEffect(() => { 
-    const addPaypalScript = async() => {
-      const { data : clientId } = await axios.get(`${URL}/api/config/paypal`);
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      script.async = true;
-      script.onload = () => {
-        setSdkReady(true);
-      };
-      document.body.appendChild(script)
-    };
-
-    if(!order || successPay) {
-      dispatch({type: ORDER_PAY_RESET});
-      dispatch(getOrderDetails(orderId));
-    }else if(!order.isPaid){
-      if(!window.paypal){
-        addPaypalScript()
-      }else {
-        setSdkReady(true)
-      }
-    };
-
+    let isMounted = true;
+    if(isMounted){
+        const addPaypalScript = async() => {
+          const { data : clientId } = await axios.get(`${URL}/api/config/paypal`);
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+          script.async = true;
+          script.onload = () => {
+            setSdkReady(true);
+          };
+          document.body.appendChild(script)
+        };
+    
+        if(!order || successPay) {
+          dispatch({type: ORDER_PAY_RESET});
+          dispatch(getOrderDetails(orderId));
+        }else if(!order.isPaid){
+          if(!window.paypal){
+            addPaypalScript()
+          }else {
+            setSdkReady(true)
+          }
+        };
+    }
+    return () => isMounted = false;
   }, [dispatch, orderId, successPay, order, ])
   
   const successPayHandle = (paymentResult) => {
@@ -104,11 +108,13 @@ const OrderScreen = ({match}) => {
         }
       }
     } 
-
-    if(Loading){
-        sendSummary();
+    let isMounted = true;
+    if(isMounted){
+        if(Loading){
+            sendSummary();
+        }
     }
-
+    return () => isMounted = false;
   }, [order, orderId, payLoading, shippingAddress.code, userInfo.token])
   
   return (

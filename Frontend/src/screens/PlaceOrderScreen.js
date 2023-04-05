@@ -58,10 +58,14 @@ const PlaceOrderScreen = ({history}) => {
   };
 
   useEffect(() => {
-    if(success) {
-      history.push(`/order/${order._id}`);
-      dispatch({type: ORDER_CREATE_RESET});
+    let isMounted = true;
+    if(isMounted){
+      if(success) {
+        history.push(`/order/${order._id}`);
+        dispatch({type: ORDER_CREATE_RESET});
+      }
     }
+    return () => isMounted = false;
   },[history, dispatch, success, order])
   
   return (

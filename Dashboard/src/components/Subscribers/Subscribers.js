@@ -31,16 +31,17 @@ const Subscribers = () => {
   const [subscribers, setSubscribers] = useState([]);
 
   useEffect(() => {
-    const getSubscribers = async() => {
+    let isMounted = true;
+    (async() => {
         const config = {
             headers:{
                 Authorization: `Bearer: ${userInfo.token}`,
             },
         };
         const { data } = await axios.get(`${URL}/api/subscribers`, config);
-        setSubscribers(data);
-    }
-    getSubscribers();
+        if(isMounted)  setSubscribers(data);
+    })();
+    return () => isMounted = false;
   }, [userInfo.token])
   
 

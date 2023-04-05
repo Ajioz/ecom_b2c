@@ -20,10 +20,13 @@ const Login = ({location, history}) => {
   const { loading, userInfo , error } = userLogin;
 
   useEffect(() => {
-    if(userInfo){
-      history.push(redirect)
-    }
-  
+      let isMounted = true;
+      if(isMounted){
+        if(userInfo){
+          history.push(redirect)
+        }
+      }
+      return () => isMounted = false;
   }, [userInfo, history, redirect])
   
   const handleSubmit = (e) => {

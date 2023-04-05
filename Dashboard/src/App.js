@@ -27,10 +27,14 @@ function App() {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if(userInfo && userInfo.isAdmin){
-      dispatch(listProducts());
-      dispatch(listOrders());
+    let isMounted = true;
+    if(isMounted){
+      if(userInfo && userInfo.isAdmin){
+        dispatch(listProducts());
+        dispatch(listOrders());
+      }
     }
+    return () => isMounted = false;
   }, [dispatch, userInfo])
   
   return (

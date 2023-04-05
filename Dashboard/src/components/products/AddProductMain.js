@@ -30,15 +30,19 @@ const AddProductMain = () => {
   const {loading, product, error } = productCreate;
 
   useEffect(() => {
-    if(product){
-      toast.success("Product Added", ToastParams);
-      dispatch({type: PRODUCT_CREATE_RESET});
-      setName(" ");
-      setDescription("");
-      setStock(0);
-      setImage("");
-      setPrice(0);      
+    let isMounted = true;
+    if(isMounted){
+      if(product){
+        toast.success("Product Added", ToastParams);
+        dispatch({type: PRODUCT_CREATE_RESET});
+        setName(" ");
+        setDescription("");
+        setStock(0);
+        setImage("");
+        setPrice(0);      
+      }
     }
+    return () => isMounted = false;
   }, [dispatch,product])
   
 

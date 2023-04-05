@@ -7,23 +7,28 @@ import { logout } from "../Redux/Actions/userActions";
 const Header = () => {
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    $("[data-trigger]").on("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      var offcanvas_id = $(this).attr("data-trigger");
-      $(offcanvas_id).toggleClass("show");
-    });
 
-    $(".btn-aside-minimize").on("click", function () {
-      if (window.innerWidth < 768) {
-        $("body").removeClass("aside-mini");
-        $(".navbar-aside").removeClass("show");
-      } else {
-        // minimize sidebar on desktop
-        $("body").toggleClass("aside-mini");
-      }
-    });
+  useEffect(() => {
+    let isMounted = true;
+    if(isMounted){
+      $("[data-trigger]").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var offcanvas_id = $(this).attr("data-trigger");
+        $(offcanvas_id).toggleClass("show");
+      });
+  
+      $(".btn-aside-minimize").on("click", function () {
+        if (window.innerWidth < 768) {
+          $("body").removeClass("aside-mini");
+          $(".navbar-aside").removeClass("show");
+        } else {
+          // minimize sidebar on desktop
+          $("body").toggleClass("aside-mini");
+        }
+      });
+    }
+    return () => isMounted = false;
   }, []);
 
   const logoutHandler = () => {

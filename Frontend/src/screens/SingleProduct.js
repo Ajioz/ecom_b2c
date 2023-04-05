@@ -49,12 +49,16 @@ const SingleProduct = ({history,  match }) => {
 
   
   useEffect(() => {
-    if(successCreateReview){
-      setRating(0);
-      setComment("");
-      dispatch({type: PRODUCT_CREATE_REVIEW_RESET});
+    let isMounted = true;
+    if(isMounted){
+        if(successCreateReview){
+            setRating(0);
+            setComment("");
+            dispatch({type: PRODUCT_CREATE_REVIEW_RESET});
+        }
+        dispatch(ProductDetails(productId));
     }
-    dispatch(ProductDetails(productId));
+    return () => isMounted = false;
   },[dispatch, productId, successCreateReview])
 
   const addToCartHandler = (e) => {

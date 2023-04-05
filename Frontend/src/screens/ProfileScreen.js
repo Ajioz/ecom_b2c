@@ -19,8 +19,12 @@ const ProfileScreen = () => {
   const { loading, error, orders } = orderListMy;
 
   useEffect(() => {
-    dispatch(listMyOrders())
-    dispatch(getUserDetails())
+      let isMounted = true;
+      if(isMounted){
+        dispatch(listMyOrders())
+        dispatch(getUserDetails())
+      }
+      return () => isMounted = false;
   }, [dispatch])
   
 

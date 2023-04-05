@@ -7,6 +7,7 @@ import axios from "axios";
 import { URL } from "../../Redux/url";
 
 function Email() {
+  
   const [email, setEmail] = useState("subscribers@emails");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -16,32 +17,32 @@ function Email() {
   const { userInfo } = userLogin;
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    if (!email || !subject || !message)
-      return toast.error(
-        "Please make sure to fill the email address, email subject, and message"
-      );
-    try {
-      setLoading(true);
-      const config = {
-        headers:{
-          Authorization: `Bearer: ${userInfo.token}`,
-        },
-      };
-      const { data } = await axios.post(`${URL}/api/send/emails`, {email, subject, message}, config);
-      setLoading(false);
-      toast.success(data.message);
-        setEmail("");
-        setSubject("");
-        setMessage("");
-    } catch (error) {
-      setLoading(false);
-      toast.error(
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
-      );
-    }
+      e.preventDefault();
+      if (!email || !subject || !message)
+        return toast.error(
+          "Please make sure to fill the email address, email subject, and message"
+        );
+      try {
+        setLoading(true);
+        const config = {
+          headers:{
+            Authorization: `Bearer: ${userInfo.token}`,
+          },
+        };
+        const { data } = await axios.post(`${URL}/api/send/emails`, {email, subject, message}, config);
+        setLoading(false);
+        toast.success(data.message);
+          setEmail("");
+          setSubject("");
+          setMessage("");
+      } catch (error) {
+        setLoading(false);
+        toast.error(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        );
+      }
   };
 
   return (

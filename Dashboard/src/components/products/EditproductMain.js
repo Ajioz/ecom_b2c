@@ -33,21 +33,24 @@ const EditProductMain = (props) => {
   const {loading:loadingUpdate, success, error:errorUpdate } = productUpdate;
 
   useEffect(() => {
-    if(success){
-      dispatch({type: PRODUCT_UPDATE_RESET})
-      toast.success("Product Updated", ToastParams);
-    }else{
-       if(!product.name || product._id !== productId){
-      dispatch(editProduct(productId));     
-      
-    }else{
-      setName(product.name);
-      setPrice(product.price); 
-      setImage(product.image);
-      setStock(product.stock);
-      setDescription(product.description);
+    let isMounted = true;
+    if(isMounted){
+        if(success){
+          dispatch({type: PRODUCT_UPDATE_RESET})
+          toast.success("Product Updated", ToastParams);
+        }else{
+          if(!product.name || product._id !== productId){
+              dispatch(editProduct(productId));     
+          }else{
+              setName(product.name);
+              setPrice(product.price); 
+              setImage(product.image);
+              setStock(product.stock);
+              setDescription(product.description);
+          }
+        }
     }
-    }
+    return () => isMounted = false;
   }, [dispatch, product, productId, success])
 
   const submitHandler = (e) => {

@@ -13,7 +13,9 @@ const UserComponent = () => {
   const {loading, users, error } = userList;
 
   useEffect(() => {
-    dispatch(listUsers())
+    let isMounted = true;
+    if(isMounted) dispatch(listUsers());
+    return () => isMounted = false;
   }, [dispatch])
   
 

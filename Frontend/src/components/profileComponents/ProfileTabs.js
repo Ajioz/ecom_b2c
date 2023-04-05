@@ -29,10 +29,14 @@ const ProfileTabs = () => {
   const { loading: updateLoading } = userUpdate;
 
   useEffect(() => {
-    if(user){
-      setName(user.name)
-      setEmail(user.email)
-    }
+      let isMounted = true;
+      if(isMounted){
+          if(user){
+            setName(user.name)
+            setEmail(user.email)
+          }
+      }
+      return () => isMounted = false;
   }, [setName, setEmail, user])
   
   const handleSubmit = (e) => {

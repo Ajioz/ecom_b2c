@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
 dotenv.config();
 import asyncHandler from 'express-async-handler';
-const fs = require("fs");
-const webpush = require('web-push');
-const sub = require('./db.json'); 
+import fs from "fs";
+import webpush from 'web-push';
+// import sub from '../db.json'; 
 
 webpush.setVapidDetails(
   process.env.WEB_PUSH_CONTACT, 

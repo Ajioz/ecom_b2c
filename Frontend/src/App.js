@@ -5,7 +5,7 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRouter from "./ProvateRouter";
 import Loading from "./components/LoadingError/Loading";
-// import firebase from './firebase'
+
 
 const HomeScreen = lazy(() => import ("./screens/HomeScreen"));
 const SingleProduct = lazy(() => import ("./screens/SingleProduct"));
@@ -21,15 +21,6 @@ const NotFound = lazy(() => import ("./screens/NotFound"));
 
 
 const App = () => {
-
-//  useEffect(() => {
-//     const msg = firebase.messaging();
-//     msg.requestPermission().then(()=>{
-//       return msg.getToken();
-//     }).then((data)=>{
-//       console.warn("token",data)
-//     })
-//   })
 
   return (
     <Router>

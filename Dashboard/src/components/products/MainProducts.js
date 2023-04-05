@@ -17,7 +17,11 @@ const MainProducts = () => {
   const {loading: deleteLoading, error:deleteError, success:deleteSuccess} = productDelete;
 
   useEffect(() => {
-    dispatch(listProducts())
+      let isMounted = true;
+      if(isMounted){
+        dispatch(listProducts())
+      }
+      return () => isMounted = false;
   }, [dispatch, deleteSuccess])
 
 

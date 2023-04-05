@@ -17,7 +17,11 @@ function Email({ emailz }) {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    setEmail(emailz);
+      let isMounted = true;
+      if(isMounted){
+        setEmail(emailz);
+      }
+      return () => isMounted = false;
   }, [setEmail, emailz])
   
   

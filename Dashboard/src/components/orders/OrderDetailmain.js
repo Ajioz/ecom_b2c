@@ -29,7 +29,6 @@ const OrderDetailmain = ({orderId}) => {
     setTopRightModal(!topRightModal);
   };
 
-
   const dispatch = useDispatch();
   const orderDetail = useSelector((state) => state.orderDetail);
   const {loading, error, order } = orderDetail;
@@ -37,9 +36,13 @@ const OrderDetailmain = ({orderId}) => {
   const orderDelivered = useSelector((state) => state.orderDelivered);
   const {loading:loadingDelivered, success } = orderDelivered;
 
-  
+
   useEffect(() => {
-    dispatch(getOrderDetail(orderId))
+    let isMounted = true;
+    if(isMounted){
+      dispatch(getOrderDetail(orderId))
+    }
+    return () => isMounted = false;
   }, [dispatch, orderId, success])
   
   const deliverHandler = (e) => {
