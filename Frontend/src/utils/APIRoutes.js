@@ -1,4 +1,4 @@
-export const host = process.env.REACT_APP_SERVER_URL;
+export const host = "https://sandyhub.onrender.com";
 export const registerRoute = `${host}/api/chat/register`;
 export const loginRoute = `${host}/api/chat/login`;
 export const leaveRoute = `${host}/api/chat/leaveChat`;

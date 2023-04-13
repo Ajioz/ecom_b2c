@@ -16,7 +16,7 @@ function urlBase64ToUint8Array(base64String) {
 
 export function sendSubscription(subscription) {
   
-  return fetch(`${process.env.REACT_APP_SERVER_URL}/notifications/subscribe`, {
+  return fetch('https://sandyhub.onrender.com/notifications/subscribe', {
     method: 'POST',
     body: JSON.stringify(subscription),
     headers: {
