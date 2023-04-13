@@ -6,17 +6,14 @@ import nodemailer from 'nodemailer';
 import { genReceipt } from './genReceiptController.js'
 
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    type: 'OAuth2',
-    user:  process.env.EMAIL2,
-    pass:  process.env.PASSWORD2,
-    clientId:  process.env.OAUTH_CLIENTID2,
-    clientSecret:  process.env.OAUTH_CLIENT_SECRET2,
-    refreshToken:  process.env.OAUTH_REFRESH_TOKEN2,
-  }
-});
+let config = {
+    service : 'gmail',
+    auth : {
+        user: process.env.EMAIL2,
+        pass: process.env.APP_PASSWORD
+    }
+}
+const transporter = nodemailer.createTransport(config);
 
 
 /*

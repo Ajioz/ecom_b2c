@@ -38,7 +38,7 @@ const ShopSection = (props) => {
                     Authorization: `Bearer: ${userInfo?.token}`,
                 },
               };
-              let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo.country}, config);
+              let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo?.country}, config);
               let month = Number(data.date.split('-')[1]);
               let rate = data.info.rate;
               let code = data.code;
@@ -58,7 +58,7 @@ const ShopSection = (props) => {
                         Authorization: `Bearer: ${userInfo?.token}`,
                     },
                   };
-                let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo.country}, config);
+                let { data } = await axios.post(`${URL}/api/products/country`, {country: userInfo?.country}, config);
                 let date = data.date;
                 let month = Number(date.split('-')[1]);
                 let rate = data.info.rate;

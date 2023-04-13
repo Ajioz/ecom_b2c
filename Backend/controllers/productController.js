@@ -4,7 +4,7 @@ import asyncHandler from 'express-async-handler'
 import Product from '../models/ProductModel.js';
 import cloudinary from '../utils/cloudinary.js';
 import { currencies } from '../utils/currencies.js';
-import fetch, {Headers} from 'node-fetch';
+import fetch from 'node-fetch';
 
 
 

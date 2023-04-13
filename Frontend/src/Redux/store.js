@@ -18,6 +18,7 @@ import {
     orderPayReducer 
 } from "./Reducers/OrderReducer";
 
+import { updateModalReducer } from './Reducers/ModalReducer'
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -32,6 +33,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailReducer,
     orderPay: orderPayReducer,
     orderListMy: orderListMyReducer,
+    modalShow: updateModalReducer,
 })
 
 //Cart Items 
