@@ -5,7 +5,7 @@ import { registerPushNotify, sendPushNotification } from '../controllers/pushCon
 const pushRoute = Router();
 
 // REGISTER A PUSH NOTIFICATION CLIENT
-pushRoute.post('/subscribe', protect, Admin, registerPushNotify);
+pushRoute.post('/subscribe', registerPushNotify);
 
 
 // SEND A PUSH NOTIFICATION TO CLIENTS

@@ -14,7 +14,7 @@ import Login from "./screens/LoginScreen";
 import UsersScreen from "./screens/UsersScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import NotFound from "./screens/NotFound";
-import PrivateRouter from "./ProvateRouter";
+import PrivateRouter from "./PrivateRouter";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "./Redux/Actions/ProductAction";
 import { listOrders } from "./Redux/Actions/orderAction"

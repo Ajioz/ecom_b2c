@@ -8,6 +8,7 @@ export const Login = asyncHandler(async(req, res) => {
     try {
         const {email, password } = req.body;
         const user = await User.findOne({ email });
+        console.log(user)
         const data = { _id: user._id, isAdmin: user.isAdmin   }
         const token = generateToken(data);
         if(user && (await user.matchPassword(password))){

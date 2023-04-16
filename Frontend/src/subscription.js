@@ -14,15 +14,21 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray
 }
 
-export function sendSubscription(subscription) {
+
+export async function sendSubscription(subscription) {
   
-  return fetch('https://sandyhub.onrender.com/notifications/subscribe', {
+  const res = await fetch('https://sandyhub.onrender.com/api/notifications/subscribe', {
     method: 'POST',
     body: JSON.stringify(subscription),
     headers: {
       'Content-Type': 'application/json'
     }
   })
+  if (res.status === 201)
+    console.log({ status: 'New subscription added.', msg: "Subscription Added" })
+  else if (res.status === 409) {
+    console.log({ status: 'Subscription failed', msg: "Device Already subscribed" })
+  }
 }
 
 export function subscribeUser() {
@@ -41,9 +47,6 @@ export function subscribeUser() {
             applicationServerKey: convertedVapidKey,
             userVisibleOnly: true,
           }).then(function(newSubscription) {
-            console.log('New subscription added.')
-            // let { body } = newSubscription;
-            // body = "New Arrival";
             sendSubscription(newSubscription)
           }).catch(function(e) {
             if (Notification.permission !== 'granted') {
@@ -53,7 +56,7 @@ export function subscribeUser() {
             }
           })
         } else {
-          console.log('Existed subscription detected.')
+          console.log('Existed subscription detected.', existedSubscription)
           sendSubscription(existedSubscription)
         }
       })

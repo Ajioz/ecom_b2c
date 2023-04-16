@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRouter from "./ProvateRouter";
 import Loading from "./components/LoadingError/Loading";
 
-
 const HomeScreen = lazy(() => import ("./screens/HomeScreen"));
 const SingleProduct = lazy(() => import ("./screens/SingleProduct"));
 const Login = lazy(() => import ( "./screens/Login"));

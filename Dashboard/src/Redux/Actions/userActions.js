@@ -32,6 +32,7 @@ export const login = (email, password) => async(dispatch) => {
             },
         };
         const { data } = await axios.post(`${URL}/api/users/login`, { email, password}, config);
+        console.log(data);
         if(!data.isAdmin){
             toast.error("You are not Admin", ToastParams);
             dispatch({type: USER_LOGIN_FAIL})

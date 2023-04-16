@@ -1,9 +1,8 @@
 import dotenv from 'dotenv'
 dotenv.config();
 import asyncHandler from 'express-async-handler';
-import fs from "fs";
 import webpush from 'web-push';
-// import sub from '../db.json'; 
+import Sub from '../models/pushModel.js';
 
 webpush.setVapidDetails(
   process.env.WEB_PUSH_CONTACT, 
@@ -13,15 +12,15 @@ webpush.setVapidDetails(
 
 // REGISTER A PUSH NOTIFICATION CLIENT
 export const registerPushNotify = asyncHandler(async(req, res) => {
-    const subscription = req.body;
+    const {endpoint, expirationTime, keys} = req.body;
     try {
-        let pushList = sub.find(subscriber => subscriber.keys.auth === subscription.keys.auth);
-        if(pushList) return res.status(200).json({status:"Device Already subscribed"});
-        fs.writeFile("db.json", JSON.stringify([...sub, subscription]), (err) => {
-          if (err) throw err;
-          console.log("done writing....");
-        });
-        return res.json({status: true, msg: "Data Added to Json DB"});
+        let findSub = await Sub.find({});
+        if(findSub){
+          let pushList = findSub.find(subscriber => subscriber.keys.auth === keys.auth);
+          if(pushList) return res.status(409).json({status:"Device Already subscribed"});
+        }
+        Sub.create({ endpoint, expirationTime, keys });
+        return res.status(201).json({status: true, msg: "Data Added to notification subscribers"});
     } catch (error) {
         console.log(error)
         return res.status(404).json({message: "Server Error"});
@@ -32,20 +31,21 @@ export const registerPushNotify = asyncHandler(async(req, res) => {
 // SEND A PUSH NOTIFICATION TO CLIENTS
 export const sendPushNotification = asyncHandler(async(req, res) => {
     const { title, body } = req.body;
+    let findSub = await Sub.find({});
     try {
-      let data = 'http://localhost:3000/'
+      let url = 'https://hubsandy.netlify.app/'
       let vibrate = [24 * 60 * 60];
-      const payload = JSON.stringify({ title, body, data, vibrate });
-      sub.map((push) => {
+      const payload = JSON.stringify({ title, body, url, vibrate });
+      findSub.map((push) => {
         return (
           webpush.sendNotification(push, payload)
           .then(result => console.log( {status: true } ))
           .catch(e => console.log(e.stack))
         )
       });
-      return res.status(200).json({'success': true});
+      return res.status(200).json({msg: "Notification sent successfully", status:true});
     } catch (error) {
       console.log(error)
-      return res.status(404).json({message: "Server Error"});
+      return res.status(404).json({msg: "Failed to notify subscribers", status:false});
     }
 });
