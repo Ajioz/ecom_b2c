@@ -89,7 +89,6 @@ export const getOrderId = asyncHandler(async(req, res) => {
 // ORDER IS PAID
 export const orderIsPaid = asyncHandler(async(req, res) => {
     const order = await Order.findById(req.params.id)
-    // console.log({order, message: "Order Paid"})
     try {
         if(order){
             order.isPaid = true;

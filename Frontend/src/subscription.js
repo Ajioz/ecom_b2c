@@ -1,4 +1,4 @@
-const convertedVapidKey = urlBase64ToUint8Array(process.env.REACT_APP_PUBLIC_VAPID_KEY)
+const convertedVapidKey = urlBase64ToUint8Array('BIc82V4AGfnlly1gqPj33HJXzNdFJS2MpWTRDR45TP3qPKTRsD7zAqjH5dnrVGlMT5Z1pBulx4gto3S5PxLv9Gk')
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - base64String.length % 4) % 4)
