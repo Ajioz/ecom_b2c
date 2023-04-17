@@ -1,3 +1,5 @@
+'use strict';
+
 self.addEventListener('push', event => {
   const data = event.data.json()
   const options = {
@@ -7,9 +9,7 @@ self.addEventListener('push', event => {
     data: data.url,
     vibrate: data.vibrate.push(24 * 60 * 60)
   }
-  event.waitUntil(
-    self.registration.showNotification(data.title, options)
-  );
+  event.waitUntil(self.registration.showNotification(data.title, options));
 })
 
 

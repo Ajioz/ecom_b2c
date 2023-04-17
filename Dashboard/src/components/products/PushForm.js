@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
-import { URL } from "../../Redux/url";
+import { URL, local_url } from "../../Redux/url";
 
 
 const toastParam = {
@@ -35,7 +35,7 @@ const PushForm = () => {
                 },
             };
             const { title, body } = values;
-            const { data } = await axios.post(`${URL}/api/notifications/send`, {title, body}, config);
+            const { data } = await axios.post(`${local_url}/api/notifications/send`, {title, body}, config);
             if(data.status === false){
                 if(!toast.isActive(toastId.current)) toastId.current = toast.error(data.msg, toastParam); 
             }
