@@ -39,10 +39,11 @@ export const sendPushNotification = asyncHandler(async(req, res) => {
       findSub.map((push) => {
         return (
           webpush.sendNotification(push, payload)
-          .then(result => console.log( {status: true } ))
+          .then(result => console.log())
           .catch(e => console.log(e.stack))
         )
       });
+      console.log({msg: "Notification sent successfully", status:true} )
       return res.status(200).json({msg: "Notification sent successfully", status:true});
     } catch (error) {
       console.log(error)

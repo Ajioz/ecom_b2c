@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import * as serviceWorker from './serviceWorker';
 import { subscribeUser } from './subscription';
 
+
 ReactDOM.render(
     <Provider store = {store}>
         <App />
@@ -14,3 +15,4 @@ document.getElementById("root"));
 
 serviceWorker.register();
 subscribeUser();
+

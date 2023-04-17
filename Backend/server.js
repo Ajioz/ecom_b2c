@@ -69,7 +69,7 @@ app.get("/api/config/paypal", (req, res) => {
 const start = async () => {
     try {
         await ConnectDb(url);
-        const server =  app.listen(port, () => console.log(`Server running on port http://localhost:${port}/api`))
+        const server =  app.listen(port, () => console.log(`Server running on port https://localhost:${port}/api`))
         const io = new Server(server, {
             cors: {
                 origin: "*",

@@ -3,7 +3,7 @@ import "./responsive.css";
 import "react-toastify/dist/ReactToastify.css";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PrivateRouter from "./ProvateRouter";
+import PrivateRouter from "./PrivateRouter";
 import Loading from "./components/LoadingError/Loading";
 
 const HomeScreen = lazy(() => import ("./screens/HomeScreen"));
