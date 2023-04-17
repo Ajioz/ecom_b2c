@@ -18,7 +18,7 @@ function urlBase64ToUint8Array(base64String) {
 export async function sendSubscription(subscription) {
   
   // const res = await fetch('https://sandyhub.onrender.com/api/notifications/subscribe', {
-  const res = await fetch('http://localhost:5001/api/notifications/subscribe', {
+  const res = await fetch('https://localhost:10000/api/notifications/subscribe', {
     method: 'POST',
     body: JSON.stringify(subscription),
     headers: {

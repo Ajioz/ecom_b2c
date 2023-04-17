@@ -148,6 +148,10 @@
     margin-bottom: 1rem;
   }
 
+  .content-header .sep{
+    margin: 10px auto;
+  }
+
   .card-header input.form-control {
     margin-bottom: 1rem;
   }

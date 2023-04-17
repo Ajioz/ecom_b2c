@@ -48,7 +48,7 @@ const MainProducts = () => {
               Create new
             </Link>
           </div>
-          <div className="btn btn-primary"  onClick={toggleShow}>Push Notify</div>
+          <div className="btn btn-primary sep"  onClick={toggleShow}>Push Notify</div>
         </div>
 
         <div className="card mb-4 shadow-sm">

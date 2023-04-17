@@ -41,7 +41,7 @@ const PushForm = () => {
             }
             if(data.status === true ) {
                 toast.success(data.status, toastParam);
-                console.log({title, body})
+                window.location.reload();
                 setValues({
                     title: "",
                     body: ""
